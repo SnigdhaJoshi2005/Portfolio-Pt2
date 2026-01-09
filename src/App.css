@@ -179,34 +179,223 @@ body {
   color: var(--text-muted);
 }
 
-/* ================= PROJECTS ================= */
-.projects {
-  padding: 100px 60px;
+/* ================= WHO HE SERVES SECTION ================= */
+
+.serve {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 80px;
+  padding: 120px 60px;
+  background: var(--bg-main);
 }
 
-.projects h2 {
+.serve-left h2 {
   font-family: "Playfair Display", serif;
   font-size: 48px;
+  margin-bottom: 30px;
+}
+
+.serve-left ul {
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+.serve-left li {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--text-muted);
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.serve-left li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--secondary);
+  font-size: 20px;
+}
+
+.serve-note {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-muted);
+  max-width: 520px;
+}
+
+/* RIGHT SIDE */
+.serve-right h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.serve-right p {
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.serve-right blockquote {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  line-height: 1.6;
+  color: var(--text-dark);
+  border-left: 3px solid var(--secondary);
+  padding-left: 20px;
   margin-bottom: 40px;
 }
 
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .serve {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    padding: 80px 30px;
+  }
 }
 
-.project-grid img {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  border-radius: 18px;
+/* ================= PRACTICES ================= */
+
+.practices {
+  padding: 100px 60px;
+  background: var(--bg-main);
+}
+
+.practices h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 48px;
+  margin-bottom: 50px;
+}
+
+.practice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 50px;
+}
+
+.practice-card {
+  background: var(--bg-soft);
+  padding: 50px;
+  border-radius: 24px;
   transition: transform 0.4s ease;
 }
 
-.project-grid img:hover {
-  transform: scale(1.04);
+.practice-card:hover {
+  transform: translateY(-6px);
 }
+
+.practice-card h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.practice-card p {
+  line-height: 1.9;
+  color: var(--text-muted);
+}
+
+.practice-footer {
+  max-width: 700px;
+  font-size: 17px;
+  line-height: 1.9;
+  color: var(--text-muted);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .practice-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* ================= SOCIAL MEDIA SECTION ================= */
+
+.social-media {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 80px;
+  padding: 120px 60px;
+  background: var(--bg-soft);
+  align-items: center;
+}
+
+/* LEFT: PHONES */
+.social-left {
+  display: flex;
+  gap: 40px;
+}
+
+.social-phone {
+  text-align: center;
+}
+
+.social-phone img {
+  width: 220px;
+  height: 440px;
+  object-fit: cover;
+  border-radius: 28px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  margin-bottom: 16px;
+}
+
+.social-phone a {
+  font-size: 14px;
+  color: var(--secondary);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.social-phone a:hover {
+  opacity: 0.7;
+}
+
+/* RIGHT: YOUTUBE */
+.social-right h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 48px;
+  margin-bottom: 30px;
+}
+
+.youtube-frame {
+  width: 100%;
+  height: 260px;
+  border-radius: 18px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.youtube-frame iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.youtube-link {
+  font-size: 14px;
+  color: var(--secondary);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.youtube-link:hover {
+  opacity: 0.7;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .social-media {
+    grid-template-columns: 1fr;
+    padding: 80px 30px;
+  }
+
+  .social-left {
+    justify-content: center;
+  }
+}
+
 
 /* ================= PROCESS ================= */
 .process {
@@ -220,7 +409,7 @@ body {
   margin-bottom: 30px;
 }
 
-.process ol {
+.process p {
   font-size: 18px;
   line-height: 2.2;
   margin-left: 20px;
@@ -248,6 +437,39 @@ body {
 }
 
 .contact p {
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+/* ================= CONTACT TEXT ENHANCEMENTS ================= */
+
+.contact-content {
+  max-width: 520px;
+}
+
+.contact-lead {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  margin-bottom: 14px;
+  color: var(--secondary);
+}
+
+.contact-signature {
+  margin: 30px 0;
+}
+
+.contact-signature span {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.contact-signature small {
+  color: var(--text-muted);
+}
+
+.contact-info {
+  font-size: 14px;
   color: var(--text-muted);
   line-height: 1.8;
 }
