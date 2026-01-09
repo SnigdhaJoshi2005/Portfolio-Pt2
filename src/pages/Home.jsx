@@ -8,9 +8,10 @@ const Home = () => {
       <nav className="navbar">
         <ul>
           <li>About</li>
-          <li>Values</li>
-          <li>Projects</li>
-          <li>Process</li>
+          <li>Vision</li>
+          <li>Practices</li>
+          <li>Socials</li>
+          <li>Certifications</li>
           <li>Contact</li>
         </ul>
       </nav>
@@ -18,10 +19,10 @@ const Home = () => {
       {/* ================= HERO ================= */}
       <section className="hero">
         <div className="hero-images">
-          <img src="/mountain1.jpg" alt="Mountain" />
-          <img src="/river1.jpg" alt="River" />
-          <img src="/mountain2.jpg" alt="Mountain" />
-          <img src="/river2.jpg" alt="River" />
+          <img src="src/pictures/main1.jpg" alt="Main1" />
+          <img src="src/pictures/main2.jpg" alt="Main2" />
+          <img src="src/pictures/main3.jpg" alt="Main3" />
+          <img src="src/pictures/main4.jpg" alt="Main4" />
         </div>
 
         <div className="hero-text">
@@ -35,7 +36,7 @@ const Home = () => {
 
       {/* ================= ABOUT ================= */}
       <section className="about">
-        <img src="/mountain-about.jpg" alt="About" />
+        <img src="src/pictures/aboutme.jpg" alt="Aboutme" />
 
         <div className="about-content">
           <h2>ABOUT ME</h2>
@@ -78,7 +79,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ================= VISION / MISSION ================= */}
+      {/* ================= VISION ================= */}
       <section className="vision">
         <div>
           <h3>A Life Guided by Presence</h3>
@@ -91,17 +92,16 @@ const Home = () => {
             awareness, stillness, and presence become the primary tools for change.
           </p>
         </div>
-        <div>
-          <h3>MISSION</h3>
-          <p>
-            Transform ideas into thoughtful, modern, and user-friendly
-            web interfaces.
-          </p>
+        <div className="vision-image">
+          <img src="src/pictures/vision.jpg" alt="Vision" />
         </div>
+
       </section>
 
       <section className="serve">
         <div className="serve-left">
+          <img src="src/pictures/serve1.jpg" alt="Serve1" className="serve-image"/>
+
           <h2>WHO HE SERVES</h2>
 
           <ul>
@@ -119,19 +119,23 @@ const Home = () => {
         </div>
 
         <div className="serve-right">
-          <h3>A GLOBAL VISION</h3>
+          <br/>
+          <h3>A GLOBAL VISION</h3><br/>
           <p>
             From the Himalayas to Europe, South America, North America, and beyond,
             Rupendra Kayastha is building a global community of conscious leaders,
             healers, and seekers.
-          </p>
+          </p><br/>
 
           <blockquote>
             To awaken the world to the intelligence of healing that already lives
             within each of us.
-          </blockquote>
+          </blockquote><br/>
+
+          <img src="src/pictures/serve2.jpg" alt="Serve2" className="serve-image" />
         </div>
       </section>
+
 
       {/* ================= PRACTICES ================= */}
       <section className="practices" id="practices">
@@ -140,6 +144,7 @@ const Home = () => {
         <div className="practice-grid">
           {/* PRACTICE 1 */}
           <div className="practice-card">
+            <img src="src/pictures/practice1.jpg" alt="Practice1" className="practice-image" />
             <h3>Forest Flow Therapy™</h3>
             <p>
               Nature-based, immersive healing experiences that reconnect participants
@@ -151,6 +156,7 @@ const Home = () => {
 
           {/* PRACTICE 2 */}
           <div className="practice-card">
+            <img src="src/pictures/practice2.jpg" alt="Practice2" className="practice-image" />
             <h3>Radiant Flow Method™</h3>
             <p>
               A transformational method for integrating awareness, abundance, and
@@ -171,23 +177,23 @@ const Home = () => {
       <section className="social-media">
         <div className="social-left">
           <div className="social-phone">
-            <img src="/instagram-profile.jpg" alt="Instagram Profile" />
+            <img src="src/pictures/instagram.jpeg" alt="Instagram" />
             <a
-              href="https://www.instagram.com/your-instagram"
+              href="https://www.instagram.com/rupendrakayastha?igsh=MWQ3NGxuZXFtcHd2eg=="
               target="_blank"
               rel="noreferrer"
-            >
+            ><br/>
               Instagram
             </a>
           </div>
 
           <div className="social-phone">
-            <img src="/facebook-profile.jpg" alt="Facebook Profile" />
+            <img src="src/pictures/facebook.jpeg" alt="Facebook" />
             <a
-              href="https://www.facebook.com/your-facebook"
+              href="https://www.facebook.com/rupen.kayastha"
               target="_blank"
               rel="noreferrer"
-            >
+            ><br/>
               Facebook
             </a>
           </div>
@@ -198,7 +204,7 @@ const Home = () => {
 
           <div className="youtube-frame">
             <iframe
-              src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+              src="https://youtu.be/vgLd1m8hkkQ?si=Ri_8x2a0t8E-2wE2"
               title="YouTube video"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -207,7 +213,7 @@ const Home = () => {
           </div>
 
           <a
-            href="https://www.youtube.com/@your-channel"
+            href="https://www.youtube.com/@rupendrakayastha/videos"
             target="_blank"
             rel="noreferrer"
             className="youtube-link"
@@ -228,6 +234,82 @@ const Home = () => {
           with a life of clarity, balance, and purpose.
         </p>
       </section>
+
+      {/* ================= LINEAGE & CERTIFICATIONS ================= */}
+      <section className="lineage">
+        <div className="lineage-header">
+          <h2>Lineage & Certifications</h2>
+          <p>
+            Rupendra’s work is rooted in authentic lineages and internationally
+            recognized certifications, blending ancient wisdom with modern
+            transformational sciences.
+          </p>
+        </div>
+
+        <div className="certificate-columns">
+          {/* COLUMN 1 */}
+          <div className="certificate-column">
+            <div className="certificate-card">
+              <img src="/src/pictures/certificate.jpg" alt="NLP Certification" />
+              <h4>NLP Master Practitioner & Trainer</h4>
+              <p>
+                Advanced training in consciousness transformation, mental mastery,
+                and subconscious re-patterning.
+              </p>
+            </div>
+
+            <div className="certificate-card">
+              <img src="/src/pictures/certificate.jpg" alt="Reiki Certification" />
+              <h4>Reiki Grandmaster & Teacher</h4>
+              <p>
+                Includes Sekhem-Seichim Egyptian lineage, Acupressure Reiki, and
+                Reflexology Reiki traditions.
+              </p>
+            </div>
+
+            <div className="certificate-card">
+              <img src="src/pictures/certificate.jpg" alt="Akasha Healing" />
+              <h4>Akasha Healing Trainer</h4>
+              <p>
+                Working with subtle dimensions of awareness to release karmic and
+                energetic imprints.
+              </p>
+            </div>
+          </div>
+
+          {/* COLUMN 2 */}
+          <div className="certificate-column">
+            <div className="certificate-card">
+              <img src="/src/pictures/certificate.jpg" alt="Pranic Healing" />
+              <h4>Pranic Healing & Energy Therapies</h4>
+              <p>
+                Techniques for restoring balance and harmony within the subtle
+                energy body.
+              </p>
+            </div>
+
+            <div className="certificate-card">
+              <img src="/src/pictures/certificate.jpg" alt="Forest Therapy" />
+              <h4>Forest Therapy Guide & Trainer</h4>
+              <p>
+                Integrating nature immersion with neuroscience-backed healing and
+                nervous system regulation.
+              </p>
+            </div>
+
+            <div className="certificate-card">
+              <img src="/src/pictures/certificate.jpg" alt="Hypnotherapy" />
+              <h4>Verbal & Non-Verbal Hypnotherapist</h4>
+              <p>
+                Facilitating deep subconscious transformation through guided
+                awareness and suggestion.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
 
       {/* ================= CONTACT ================= */}
       <section className="contact">
