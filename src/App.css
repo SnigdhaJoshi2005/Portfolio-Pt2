@@ -2,7 +2,7 @@
 
 /* ================= ROOT THEME ================= */
 :root {
-  --bg-main: #f4f8fb;
+  --bg-main: #b7cad5;
   --bg-soft: #e6f0f7;
   --primary: #7aaed6;
   --secondary: #4f86c6;
@@ -310,7 +310,7 @@ body {
 
 .practices {
   padding: 100px 60px;
-  background: var(--bg-main);
+  background: var(--bg-soft);
 }
 
 .practices h2 {
@@ -335,6 +335,7 @@ body {
 
 .practice-card {
   background: var(--bg-soft);
+  box-shadow: 0 10px 30px rgba(35, 82, 86, 0.3);
   padding: 50px;
   border-radius: 24px;
   transition: transform 0.4s ease;
@@ -377,7 +378,7 @@ body {
   display: flex;
   justify-content: space-around;
   padding: 120px 60px;
-  background: var(--bg-soft);
+  background: var(--bg-main);
   align-items: center;
 }
 
@@ -519,6 +520,7 @@ body {
   background: var(--bg-soft);
   padding: 30px;
   border-radius: 22px;
+  box-shadow: 0 10px 30px rgba(35, 82, 86, 0.3);
   transition: transform 0.4s ease;
   flex:1;
 }
