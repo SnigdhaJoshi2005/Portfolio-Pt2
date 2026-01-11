@@ -1,5 +1,5 @@
 import "../App.css";
-import { fadeUp, fadeIn, stagger } from "../animation";
+import { fadeUp, fadeIn, stagger, fadeLeft, fadeRight } from "../animation";
 import { FaLinkedinIn, FaInstagram, FaFacebookF } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -101,9 +101,13 @@ const Home = () => {
         viewport={{ once: true, amount: 0.3 }}
         variants={stagger}
       >
-        <img src="src/pictures/aboutme.jpg" alt="Aboutme" />
+        <motion.img
+          src="src/pictures/aboutme.jpg"
+          alt="Aboutme"
+          variants={fadeLeft}
+        />
 
-        <div className="about-content">
+        <motion.div className="about-content" variants={fadeRight}>
           <h2>ABOUT ME</h2>
           <p>
             Rupendra Kayastha is a Himalayan mystic, healer, and
@@ -121,39 +125,32 @@ const Home = () => {
             seamless approach where healing emerges naturally, effortlessly, and
             powerfully.
           </p>
-        </div>
+        </motion.div>
 
         {/* SOCIAL ICONS */}
-        <div className="about-socials">
-          <a
-            href="https://www.linkedin.com/in/your-linkedin"
-            target="_blank"
-            rel="noreferrer"
-          >
+        <motion.div className="about-socials" variants={fadeUp}>
+          <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noreferrer">
             <FaLinkedinIn />
           </a>
-
-          <a
-            href="https://www.instagram.com/your-instagram"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="https://www.instagram.com/your-instagram" target="_blank" rel="noreferrer">
             <FaInstagram />
           </a>
-
-          <a
-            href="https://www.facebook.com/your-facebook"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="https://www.facebook.com/your-facebook" target="_blank" rel="noreferrer">
             <FaFacebookF />
           </a>
-        </div>
+        </motion.div>
       </motion.section>
 
       {/* ================= VISION ================= */}
-      <section className="vision" id="vision">
-        <div>
+      <motion.section
+        className="vision"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={stagger}
+      >
+
+        <motion.div className="vision-content" variants={fadeUp}>
           <h3>A Life Guided by Presence</h3>
           <p>
             From the quiet forests of Nepal to international retreats and
@@ -169,15 +166,22 @@ const Home = () => {
             awareness, stillness, and presence become the primary tools for
             change.
           </p>
-        </div>
-        <div className="vision-image">
+        </motion.div>
+
+        <motion.div className="vision-image" variants={fadeUp}>
           <img src="src/pictures/vision.jpg" alt="Vision" />
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* ================= Serve ================= */}
-      <section className="serve">
-        <div className="serve-left">
+      <motion.section
+        className="serve"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={stagger}
+      >
+        <motion.div className="serve-left" variants={fadeLeft}>
           <img
             src="src/pictures/serve1.jpg"
             alt="Serve1"
@@ -204,9 +208,15 @@ const Home = () => {
             retreat, Rupendra’s work helps individuals step into the space where
             awareness meets transformation.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="serve-right">
+        <motion.div
+          className="serve-right"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeRight}
+        >
           <br />
           <h3>A GLOBAL VISION</h3>
           <br />
@@ -229,16 +239,22 @@ const Home = () => {
             className="serve-image"
             style={{ marginTop: "50px" }}
           />
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* ================= PRACTICES ================= */}
-      <section className="practices" id="practices">
-        <h2>Creator of Transformational Practices</h2>
+      <motion.section
+        className="practices"
+        id="practices"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={stagger} // staggered reveal of children
+      >
+        <motion.h2 variants={fadeUp}>Creator of Transformational Practices</motion.h2>
 
         <div className="practice-grid">
-          {/* PRACTICE 1 */}
-          <div className="practice-card">
+          <motion.div className="practice-card" variants={fadeUp} whileHover={{ scale: 1.03 }} transition={{ type: "spring", stiffness: 120 }}>
             <img
               src="src/pictures/practice1.jpg"
               alt="Practice1"
@@ -251,10 +267,9 @@ const Home = () => {
               the release of stress, trauma, and mental clutter through deep
               presence in natural environments.
             </p>
-          </div>
+          </motion.div>
 
-          {/* PRACTICE 2 */}
-          <div className="practice-card">
+          <motion.div className="practice-card" variants={fadeUp} whileHover={{ scale: 1.03 }} transition={{ type: "spring", stiffness: 120 }}>
             <img
               src="src/pictures/practice2.jpg"
               alt="Practice2"
@@ -267,15 +282,16 @@ const Home = () => {
               healers, and high-performing professionals seeking alignment and
               clarity.
             </p>
-          </div>
+          </motion.div>
         </div>
 
-        <p className="practice-footer">
+        <motion.p className="practice-footer" variants={fadeUp}>
           These programs blend ancient energy practices, breathwork, NLP, and
           meditation to create transformations that are lasting, profound, and
           aligned with your deepest self.
-        </p>
-      </section>
+        </motion.p>
+      </motion.section>
+
 
       {/* ================= SOCIAL MEDIA ================= */}
       <section className="social-media" id="socials">
@@ -330,7 +346,13 @@ const Home = () => {
       </section>
 
       {/* ================= PROCESS ================= */}
-      <section className="process">
+      <motion.section
+        className="process"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeUp}
+      >
         <h2>The Philosophy Behind His Work</h2>
         <p>
           “Healing is not something you do. It is something you allow—when the
@@ -342,92 +364,90 @@ const Home = () => {
           participants remember their own innate wisdom and reconnect with a
           life of clarity, balance, and purpose.
         </p>
-      </section>
+      </motion.section>
 
       {/* ================= LINEAGE & CERTIFICATIONS ================= */}
-      <section className="lineage" id="certifications">
-        <div className="lineage-header">
+      <motion.section
+        className="lineage"
+        id="certifications"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={stagger}
+      >
+        <motion.div className="lineage-header" variants={fadeUp}>
           <h2>Lineage & Certifications</h2>
           <p>
             Rupendra’s work is rooted in authentic lineages and internationally
             recognized certifications, blending ancient wisdom with modern
             transformational sciences.
           </p>
-        </div>
+        </motion.div>
 
         <div className="certificate-columns">
           {/* COLUMN 1 */}
-          <div className="certificate-column">
-            <div className="certificate-card">
-              <img
-                src="/src/pictures/certificate.jpg"
-                alt="NLP Certification"
-              />
+          <motion.div className="certificate-column" variants={fadeUp}>
+            <motion.div className="certificate-card" whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 150 }}>
+              <img src="/src/pictures/certificate.jpg" alt="NLP Certification" />
               <h4>NLP Master Practitioner & Trainer</h4>
               <p>
-                Advanced training in consciousness transformation, mental
-                mastery, and subconscious re-patterning.
+                Advanced training in consciousness transformation, mental mastery, and subconscious re-patterning.
               </p>
-            </div>
-          </div>
-          <div className="certificate-column">
-            <div className="certificate-card">
-              <img
-                src="/src/pictures/certificate.jpg"
-                alt="Reiki Certification"
-              />
+            </motion.div>
+          </motion.div>
+
+          <motion.div className="certificate-column" variants={fadeUp}>
+            <motion.div className="certificate-card" whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 150 }}>
+              <img src="/src/pictures/certificate.jpg" alt="Reiki Certification" />
               <h4>Reiki Grandmaster & Teacher</h4>
               <p>
-                Includes Sekhem-Seichim Egyptian lineage, Acupressure Reiki, and
-                Reflexology Reiki traditions.
+                Includes Sekhem-Seichim Egyptian lineage, Acupressure Reiki, and Reflexology Reiki traditions.
               </p>
-            </div>
-          </div>
-          <div className="certificate-column">
-            <div className="certificate-card">
+            </motion.div>
+          </motion.div>
+
+          <motion.div className="certificate-column" variants={fadeUp}>
+            <motion.div className="certificate-card" whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 150 }}>
               <img src="src/pictures/certificate.jpg" alt="Akasha Healing" />
               <h4>Akasha Healing Trainer</h4>
               <p>
-                Working with subtle dimensions of awareness to release karmic
-                and energetic imprints.
+                Working with subtle dimensions of awareness to release karmic and energetic imprints.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <div className="certificate-column">
-            <div className="certificate-card">
+          <motion.div className="certificate-column" variants={fadeUp}>
+            <motion.div className="certificate-card" whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 150 }}>
               <img src="/src/pictures/certificate.jpg" alt="Pranic Healing" />
               <h4>Pranic Healing & Energy Therapies</h4>
               <p>
-                Techniques for restoring balance and harmony within the subtle
-                energy body.
+                Techniques for restoring balance and harmony within the subtle energy body.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <div className="certificate-column">
-            <div className="certificate-card">
+          <motion.div className="certificate-column" variants={fadeUp}>
+            <motion.div className="certificate-card" whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 150 }}>
               <img src="/src/pictures/certificate.jpg" alt="Forest Therapy" />
               <h4>Forest Therapy Guide & Trainer</h4>
               <p>
-                Integrating nature immersion with neuroscience-backed healing
-                and nervous system regulation.
+                Integrating nature immersion with neuroscience-backed healing and nervous system regulation.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <div className="certificate-column">
-            <div className="certificate-card">
+          <motion.div className="certificate-column" variants={fadeUp}>
+            <motion.div className="certificate-card" whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 150 }}>
               <img src="/src/pictures/certificate.jpg" alt="Hypnotherapy" />
               <h4>Verbal & Non-Verbal Hypnotherapist</h4>
               <p>
-                Facilitating deep subconscious transformation through guided
-                awareness and suggestion.
+                Facilitating deep subconscious transformation through guided awareness and suggestion.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
+
 
       {/* ================= CONTACT ================= */}
       <section id="contact">
