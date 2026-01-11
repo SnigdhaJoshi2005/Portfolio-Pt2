@@ -69,8 +69,8 @@ body {
 }
 
 .hero-images {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-images img {

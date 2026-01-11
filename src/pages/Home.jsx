@@ -1,9 +1,28 @@
 import "../App.css";
-import { motion } from "framer-motion";
-import { fadeUp, fadeIn, stagger } from "./animation";
+import { fadeUp, fadeIn, stagger } from "../animation";
 import { FaLinkedinIn, FaInstagram, FaFacebookF } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const Home = () => {
+  const images = [
+    "src/pictures/main1.jpg",
+    "src/pictures/main2.jpg",
+    "src/pictures/main3.jpg",
+    "src/pictures/main4.jpg",
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, []);
+
+
   return (
     <div className="home">
       {/* ================= NAVBAR ================= */}
@@ -38,24 +57,40 @@ const Home = () => {
         variants={fadeIn}
       >
         <div className="hero-images">
-          <img src="src/pictures/main1.jpg" alt="Main1" />
-          <img src="src/pictures/main2.jpg" alt="Main2" />
-          <img src="src/pictures/main3.jpg" alt="Main3" />
-          <img src="src/pictures/main4.jpg" alt="Main4" />
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={index}
+              src={images[index]}
+              alt="Hero"
+              initial={{
+                opacity: 0.8,
+                scale: 1.05,
+              }}
+              animate={{
+                opacity: 1,
+                // scale: 1,
+              }}
+              exit={{
+                opacity: 0.8,
+                scale: 1.05,
+              }}
+              transition={{
+                duration: 1.2,
+                ease: [0.4, 0, 0.2, 1], // smooth material-like easing
+              }}
+            />
+          </AnimatePresence>
         </div>
 
         <div className="hero-text">
           <h1>PORTFOLIO</h1>
           <div>
             <h3>Rupendra Kayastha</h3>
-            <p>
-              Mystic Yogi · Healer · Trainer
-              <br />
-              Where Awareness Heals
-            </p>
+            <p>Mystic Yogi · Healer · Trainer</p>
           </div>
         </div>
       </motion.section>
+      {/* </div> */}
 
       {/* ================= ABOUT ================= */}
       <motion.section
@@ -140,6 +175,7 @@ const Home = () => {
         </div>
       </section>
 
+      {/* ================= Serve ================= */}
       <section className="serve">
         <div className="serve-left">
           <img
@@ -395,7 +431,7 @@ const Home = () => {
 
       {/* ================= CONTACT ================= */}
       <section id="contact">
-        <img src="src\pictures\aboutme.jpg" alt="Contact" className="contact-img"/>
+        <img src="src\pictures\aboutme.jpg" alt="Contact" className="contact-img" />
 
         <div className="contact">
           <div className="contact-content">
