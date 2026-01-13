@@ -647,21 +647,21 @@ body {
   .contact {
     padding: 60px 30px;
   }
+}
 
-  /* ================= Admin Panel ================= */
+/* ================= Admin Panel ================= */
   .admin-container {
     display: flex;
     min-height: 100vh;
     font-family: "Inter", sans-serif;
-    background: #f6f8fb;
+    background: var(--bg-main);
   }
 
   /* SIDEBAR */
   .admin-sidebar {
     width: 260px;
-    background: #1f3faa;
-    /* deep pastel blue */
-    color: white;
+    background: var(--secondary);
+    color: var(--text-dark);
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
@@ -690,7 +690,7 @@ body {
 
   .logout-btn {
     margin-top: auto;
-    background: #ff6b6b;
+    background: var(--text-muted);
     border: none;
     color: white;
     padding: 12px;
@@ -700,7 +700,7 @@ body {
   }
 
   .logout-btn:hover {
-    background: #ff4c4c;
+    background: var(--primary);
   }
 
   /* MAIN CONTENT */
@@ -750,5 +750,3 @@ body {
     color: #555;
     line-height: 1.6;
   }
-
-}
