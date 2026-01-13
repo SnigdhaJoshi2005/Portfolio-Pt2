@@ -11,7 +11,7 @@
   --white: #ffffff;
 }
 
-html{
+html {
   scroll-behavior: smooth;
 }
 
@@ -52,10 +52,10 @@ body {
   font-size: 14px;
 }
 
-.navbar li a{
+.navbar li a {
   cursor: pointer;
   transition: color 0.3s ease;
-  color:var(--text-muted);
+  color: var(--text-muted);
 }
 
 .navbar li:hover {
@@ -165,8 +165,8 @@ body {
 /* ================= VISION ================= */
 .vision {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-  gap: 60px; 
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 60px;
   padding: 80px 60px;
   background-color: var(--bg-soft);
 }
@@ -202,7 +202,7 @@ body {
 .serve-left {
   display: flex;
   flex-direction: column;
-  gap:25px;
+  gap: 25px;
 }
 
 .serve-left h2 {
@@ -372,6 +372,7 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
 /* ================= SOCIAL MEDIA SECTION ================= */
 
 .social-media {
@@ -522,7 +523,7 @@ body {
   border-radius: 22px;
   box-shadow: 0 10px 30px rgba(35, 82, 86, 0.3);
   transition: transform 0.4s ease;
-  flex:1;
+  flex: 1;
 }
 
 .certificate-card:hover {
@@ -647,7 +648,107 @@ body {
     padding: 60px 30px;
   }
 
-  /* section {
-  will-change: transform, opacity;
-} */
+  /* ================= Admin Panel ================= */
+  .admin-container {
+    display: flex;
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+    background: #f6f8fb;
+  }
+
+  /* SIDEBAR */
+  .admin-sidebar {
+    width: 260px;
+    background: #1f3faa;
+    /* deep pastel blue */
+    color: white;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .admin-logo {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .admin-sidebar nav a {
+    display: block;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .admin-sidebar nav a:hover,
+  .admin-sidebar nav a.active {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .logout-btn {
+    margin-top: auto;
+    background: #ff6b6b;
+    border: none;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .logout-btn:hover {
+    background: #ff4c4c;
+  }
+
+  /* MAIN CONTENT */
+  .admin-main {
+    flex: 1;
+    padding: 40px 60px;
+  }
+
+  .admin-main h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+
+  .admin-subtitle {
+    color: #666;
+    margin-bottom: 40px;
+    max-width: 600px;
+  }
+
+  /* CARDS */
+  .admin-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+  }
+
+  .admin-card {
+    background: white;
+    border-radius: 14px;
+    padding: 24px 28px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+
+  .admin-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(31, 63, 170, 0.2);
+  }
+
+  .admin-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .admin-card p {
+    color: #555;
+    line-height: 1.6;
+  }
+
 }
