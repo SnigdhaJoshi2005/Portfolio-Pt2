@@ -3,25 +3,6 @@ import { Link } from "react-router-dom";
 export default function AdminPanel() {
   return (
     <div className="admin-container">
-      {/* SIDEBAR */}
-      <aside className="admin-sidebar">
-        <h2 className="admin-logo">Admin Panel</h2>
-
-        <nav>
-          <a className="active">📊 Dashboard</a>
-          <Link to="/admin/hero">🖼 Edit Hero Section</Link>
-          <Link to="/admin/aboutme">👤 Edit About Me</Link>
-          <Link to="/admin/vision">🌿 Edit Vision</Link>
-          <Link to="/admin/practices">🧘 Edit Practices</Link>
-          <Link to="/admin/social">🔗 Edit Social Links</Link>
-          <Link to="/admin/certificates">📜 Edit Certificates</Link>
-          <Link to="/admin/contact">📞 Edit Contact</Link>
-          <Link to="/admin/settings">⚙ Site Settings</Link>
-        </nav>
-
-        <button className="logout-btn">Logout</button>
-      </aside>
-
       {/* MAIN CONTENT */}
       <main className="admin-main">
         <h1>Admin Dashboard</h1>
