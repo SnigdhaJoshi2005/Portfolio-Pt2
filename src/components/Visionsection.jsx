@@ -13,10 +13,9 @@ const Visionsection = () => {
   }, []);
 
   const imageUrl = vision?.image
-    ? vision.image.startsWith("http") || vision.image.startsWith("src")
-      ? vision.image
-      : `http://localhost:5000/${vision.image}`
+    ? `http://localhost:5000/${vision.image}`
     : "src/pictures/vision.jpg";
+
 
   return (
     <motion.section

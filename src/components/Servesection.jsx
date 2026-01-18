@@ -13,16 +13,13 @@ const ServeSection = () => {
   }, []);
 
   const img1 = serve?.image1
-    ? serve.image1.startsWith("http") || serve.image1.startsWith("src")
-      ? serve.image1
-      : `http://localhost:5000/${serve.image1}`
+    ? `http://localhost:5000/${serve.image1}`
     : "src/pictures/serve1.jpg";
 
   const img2 = serve?.image2
-    ? serve.image2.startsWith("http") || serve.image2.startsWith("src")
-      ? serve.image2
-      : `http://localhost:5000/${serve.image2}`
+    ? `http://localhost:5000/${serve.image2}`
     : "src/pictures/serve2.jpg";
+
 
   return (
     <motion.section
@@ -41,11 +38,11 @@ const ServeSection = () => {
           {serve?.list && serve.list.length > 0
             ? serve.list.map((item, i) => <li key={i}>{item}</li>)
             : [
-                "Trauma survivors and emotional seekers",
-                "Entrepreneurs, leaders, and professionals seeking clarity and flow",
-                "Healers, coaches, and spiritual teachers deepening their practice",
-                "Anyone ready to reconnect with their natural intelligence of being",
-              ].map((item, i) => <li key={i}>{item}</li>)}
+              "Trauma survivors and emotional seekers",
+              "Entrepreneurs, leaders, and professionals seeking clarity and flow",
+              "Healers, coaches, and spiritual teachers deepening their practice",
+              "Anyone ready to reconnect with their natural intelligence of being",
+            ].map((item, i) => <li key={i}>{item}</li>)}
         </ul>
 
         <p className="serve-note">

@@ -8,13 +8,12 @@ const AboutSection = () => {
   const [about, setAbout] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/about").then((res) => {
-      setAbout(res.data);
-    });
+    axios.get("http://localhost:5000/api/about")
+      .then(res => setAbout(res.data));
   }, []);
 
   const imageUrl = about?.image
-    ? about.image.startsWith("http") || about.image.startsWith("src")
+    ? about.image.startsWith("http")
       ? about.image
       : `http://localhost:5000/${about.image}`
     : "src/pictures/aboutme.jpg";
@@ -28,45 +27,38 @@ const AboutSection = () => {
       viewport={{ once: true, amount: 0.3 }}
       variants={stagger}
     >
-      <motion.img
-        src={imageUrl}
-        alt="Aboutme"
-        variants={fadeLeft}
-      />
+      <motion.img src={imageUrl} alt="About me" variants={fadeLeft} />
 
       <motion.div className="about-content" variants={fadeRight}>
         <h2>{about?.title || "ABOUT ME"}</h2>
-        <p>
-          {about?.description || `Rupendra Kayastha is a Himalayan mystic, healer, and
-            transformational trainer devoted to guiding individuals back to
-            their natural state of awareness, balance, and inner flow. He stands
-            at the intersection of ancient wisdom and modern consciousness
-            science, helping seekers, healers, and professionals awaken their
-            own intelligence of healing. He is the founder of Bodhi
-            Transformation.
-            
-            Rooted in the Himalayan yogic, tantra and Vajrayana Buddhist
-            traditions, Rupendra’s journey goes beyond ritual and theory. He
-            integrates forest therapy, energy healing, Tantra, Reiki, Akasha
-            Healing, trauma release, NLP, and hypnotherapy techniques into a
-            seamless approach where healing emerges naturally, effortlessly, and
-            powerfully.`}
-        </p>
+
+        {about?.sections?.map((sec, i) => (
+          <p key={i}>
+            <strong>{sec.heading}</strong><br />
+            {sec.text}
+          </p>
+        ))}
       </motion.div>
 
-        {/* SOCIAL ICONS */}
-        <motion.div className="about-socials" variants={fadeUp}>
-          <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noreferrer">
+      {/* SOCIAL ICONS */}
+      <motion.div className="about-socials" variants={fadeUp}>
+        {about?.socials?.linkedin && (
+          <a href={about.socials.linkedin} target="_blank" rel="noreferrer">
             <FaLinkedinIn />
           </a>
-          <a href="https://www.instagram.com/your-instagram" target="_blank" rel="noreferrer">
+        )}
+        {about?.socials?.instagram && (
+          <a href={about.socials.instagram} target="_blank" rel="noreferrer">
             <FaInstagram />
           </a>
-          <a href="https://www.facebook.com/your-facebook" target="_blank" rel="noreferrer">
+        )}
+        {about?.socials?.facebook && (
+          <a href={about.socials.facebook} target="_blank" rel="noreferrer">
             <FaFacebookF />
           </a>
-        </motion.div>
-      </motion.section>
-    )
-}
+        )}
+      </motion.div>
+    </motion.section>
+  );
+};
 export default AboutSection;

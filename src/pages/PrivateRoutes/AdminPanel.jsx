@@ -29,6 +29,12 @@ export default function AdminPanel() {
               desc="Update philosophy, guiding principles, and vision text."
             />
           </Link>
+          <Link to="/admin/Serve" className="admin-card-link">
+            <AdminCard
+              title="Edit Serve Section"
+              desc="Add, remove, or update transformational Serve."
+            />
+          </Link>
           <Link to="/admin/practice" className="admin-card-link">
             <AdminCard
               title="Edit Practices"
