@@ -40,27 +40,38 @@ export default function HeroAdmin() {
 
   // Save hero data
   const saveHero = async () => {
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    const token = localStorage.getItem("token");
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Session expired. Please login again.");
+        return;
+      }
 
-    const data = new FormData();
-    data.append("title", form.title);
-    data.append("name", form.name);
-    data.append("subtitle", form.subtitle);
-    data.append("images", JSON.stringify(form.images));
+      const data = new FormData();
+      data.append("title", form.title);
+      data.append("name", form.name);
+      data.append("subtitle", form.subtitle);
+      data.append("images", JSON.stringify(form.images));
 
-    newImages.forEach(img => data.append("files", img));
+      newImages.forEach(img => data.append("files", img));
 
-    await axios.post(API, data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+      await axios.post(API, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-    setNewImages([]);
-    setLoading(false);
-    alert("Hero section updated");
+      setNewImages([]);
+      setLoading(false);
+      alert("Hero section updated successfully ✅");
+    } catch (err) {
+      console.error(err);
+      alert(err.response?.data?.error || "Failed to update hero section ❌");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -98,7 +109,7 @@ export default function HeroAdmin() {
         {form.images?.map((img, i) => (
           <div key={i}>
             <img
-              src={`http://localhost:5000/${img}`}
+              src={img.startsWith("http") || img.startsWith("src") ? img : `http://localhost:5000/${img}`}
               style={{ width: 160, borderRadius: 10 }}
             />
             <button

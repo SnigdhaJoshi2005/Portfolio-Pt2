@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./../../App.css";
 import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            navigate("/admin");
+        }
+    }, [navigate]);
+
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -22,6 +30,7 @@ const Login = () => {
             const data = await res.json();
 
             if (res.ok) {
+                localStorage.setItem("token", data.token); // Save token for axios
                 navigate("/admin"); // redirect to admin dashboard
             } else {
                 alert(data.error || "Login failed");

@@ -743,10 +743,11 @@ body {
 .admin-sidebar {
   width: 260px;
   background: var(--secondary);
-  color: var(--text-dark);
+  color: white;
   padding: 30px 20px;
   display: flex;
   flex-direction: column;
+  transition: all 0.3s ease;
 }
 
 .admin-logo {
@@ -754,6 +755,7 @@ body {
   font-weight: 700;
   margin-bottom: 40px;
   text-align: center;
+  color: white;
 }
 
 .admin-sidebar nav a {
@@ -763,37 +765,48 @@ body {
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
 }
 
 .admin-sidebar nav a:hover,
 .admin-sidebar nav a.active {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
 }
 
 .logout-btn {
   margin-top: auto;
-  background: var(--text-muted);
+  background: #ff4d4d;
   border: none;
   color: white;
   padding: 12px;
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
+  transition: background 0.3s;
 }
 
 .logout-btn:hover {
-  background: var(--primary);
+  background: #ff3333;
 }
 
 /* MAIN CONTENT */
-.admin-main {
+.admin-content {
   flex: 1;
-  padding: 40px 60px;
+  background: #f4f7f6;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+.admin-main {
+  padding: 40px;
 }
 
 .admin-main h1 {
   font-size: 32px;
   margin-bottom: 10px;
+  color: var(--text-dark);
 }
 
 .admin-subtitle {
@@ -805,32 +818,79 @@ body {
 /* CARDS */
 .admin-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.admin-card-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .admin-card {
   background: white;
   border-radius: 14px;
   padding: 24px 28px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  height: 100%;
+  border: 1px solid #eee;
 }
 
 .admin-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(31, 63, 170, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--secondary);
 }
 
 .admin-card h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  color: var(--secondary);
 }
 
 .admin-card p {
-  color: #555;
+  color: #666;
   line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* RESPONSIVE ADMIN */
+@media (max-width: 768px) {
+  .admin-container {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    width: 100%;
+    padding: 20px;
+    height: auto;
+  }
+
+  .admin-logo {
+    margin-bottom: 20px;
+  }
+
+  .admin-sidebar nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .admin-sidebar nav a {
+    margin-bottom: 0;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .logout-btn {
+    margin-top: 20px;
+  }
+
+  .admin-main {
+    padding: 20px;
+  }
 }
 
 /* ================= About Me Admin Page ================= */

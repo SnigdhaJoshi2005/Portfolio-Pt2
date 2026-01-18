@@ -11,34 +11,48 @@ export default function AdminPanel() {
         </p>
 
         <div className="admin-cards">
-          <AdminCard
-            title="Edit Hero Section"
-            desc="Update headline text, background images, and call-to-action."
-          />
-          <AdminCard
-            title="Edit About Me"
-            desc="Manage biography, profile image, and introduction."
-          />
-          <AdminCard
-            title="Edit Vision Section"
-            desc="Update philosophy, guiding principles, and vision text."
-          />
-          <AdminCard
-            title="Edit Practices"
-            desc="Add, remove, or update transformational practices."
-          />
-          <AdminCard
-            title="Edit Social Links"
-            desc="Manage Instagram, Facebook, LinkedIn, and other platforms."
-          />
-          <AdminCard
-            title="Edit Certificates"
-            desc="Upload and manage lineage & certification content."
-          />
-          <AdminCard
-            title="Edit Contact Section"
-            desc="Update email, phone, address, and contact form settings."
-          />
+          <Link to="/admin/hero" className="admin-card-link">
+            <AdminCard
+              title="Edit Hero Section"
+              desc="Update headline text, background images, and call-to-action."
+            />
+          </Link>
+          <Link to="/admin/aboutme" className="admin-card-link">
+            <AdminCard
+              title="Edit About Me"
+              desc="Manage biography, profile image, and introduction."
+            />
+          </Link>
+          <Link to="/admin/vision" className="admin-card-link">
+            <AdminCard
+              title="Edit Vision Section"
+              desc="Update philosophy, guiding principles, and vision text."
+            />
+          </Link>
+          <Link to="/admin/practice" className="admin-card-link">
+            <AdminCard
+              title="Edit Practices"
+              desc="Add, remove, or update transformational practices."
+            />
+          </Link>
+          <Link to="/admin/social" className="admin-card-link">
+            <AdminCard
+              title="Edit Social Links"
+              desc="Manage Instagram, Facebook, LinkedIn, and other platforms."
+            />
+          </Link>
+          <Link to="/admin/certificate" className="admin-card-link">
+            <AdminCard
+              title="Edit Certificates"
+              desc="Upload and manage lineage & certification content."
+            />
+          </Link>
+          <Link to="/admin/contact" className="admin-card-link">
+            <AdminCard
+              title="Edit Contact Section"
+              desc="Update email, phone, address, and contact form settings."
+            />
+          </Link>
         </div>
       </main>
     </div>

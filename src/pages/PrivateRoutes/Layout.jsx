@@ -1,6 +1,27 @@
-import { Outlet, Link, NavLink } from "react-router-dom";
+import { Outlet, Link, NavLink, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const AdminLayout = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    // Also clear the cookie if possible (via backend call or just redirect)
+    fetch("http://localhost:5000/api/auth/logout", {
+      method: "POST",
+      credentials: "include",
+    }).finally(() => {
+      navigate("/login");
+    });
+  };
+
   return (
     <div className="admin-container">
       {/* SIDEBAR */}
@@ -21,7 +42,9 @@ const AdminLayout = () => {
           <NavLink to="/admin/setting">⚙ Settings</NavLink>
         </nav>
 
-        <button className="logout-btn">Logout</button>
+        <button className="logout-btn" onClick={handleLogout}>
+          Logout
+        </button>
       </aside>
 
       {/* PAGE CONTENT */}
