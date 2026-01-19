@@ -118,87 +118,91 @@ const AboutMe = () => {
     <div className="about-admin">
       <h1>Edit About Me</h1>
 
-      {/* TITLE */}
-      <label>Section Title</label>
-      <input
-        type="text"
-        value={about.title}
-        onChange={(e) => setAbout({ ...about, title: e.target.value })}
-      />
+      {/* SECTION TITLE */}
+      <div className="section-card">
+        <label>Section Title</label>
+        <input
+          type="text"
+          value={about.title}
+          onChange={(e) => setAbout({ ...about, title: e.target.value })}
+        />
+      </div>
 
       {/* IMAGE */}
-      <label>Upload Image</label>
-      <input type="file" accept="image/*" onChange={handleImageChange} />
+      <div className="section-card">
+        <label>Upload Image</label>
+        <input type="file" accept="image/*" onChange={handleImageChange} />
 
-      {imagePreview && (
-        <img
-          src={imagePreview}
-          alt="Preview"
-          className="about-image-preview"
-          style={{ maxWidth: "400px", marginTop: "10px", borderRadius: "10px" }}
-        />
-      )}
-
-      <hr />
+        {imagePreview && (
+          <img
+            src={imagePreview}
+            alt="Preview"
+            className="about-image-preview"
+          />
+        )}
+      </div>
 
       {/* CONTENT */}
-      <h2>Content</h2>
-      <label>Heading</label>
-      <input
-        type="text"
-        value={about.heading}
-        onChange={(e) => setAbout({ ...about, heading: e.target.value })}
-      />
+      <div className="section-card">
+        <h2>Content</h2>
 
-      <label>Description</label>
-      <textarea
-        rows="6"
-        value={about.description}
-        onChange={(e) => setAbout({ ...about, description: e.target.value })}
-      />
+        <label>Heading</label>
+        <input
+          type="text"
+          value={about.heading}
+          onChange={(e) => setAbout({ ...about, heading: e.target.value })}
+        />
 
-      <hr />
+        <label>Description</label>
+        <textarea
+          rows="6"
+          value={about.description}
+          onChange={(e) =>
+            setAbout({ ...about, description: e.target.value })
+          }
+        />
+      </div>
 
       {/* SOCIAL LINKS */}
-      <h2>Social Links</h2>
+      <div className="section-card">
+        <h2>Social Links</h2>
 
-      <input
-        type="text"
-        placeholder="LinkedIn URL"
-        value={about.socials.linkedin}
-        onChange={(e) =>
-          setAbout({
-            ...about,
-            socials: { ...about.socials, linkedin: e.target.value },
-          })
-        }
-      />
+        <input
+          type="text"
+          placeholder="LinkedIn URL"
+          value={about.socials.linkedin}
+          onChange={(e) =>
+            setAbout({
+              ...about,
+              socials: { ...about.socials, linkedin: e.target.value },
+            })
+          }
+        />
 
-      <input
-        type="text"
-        placeholder="Instagram URL"
-        value={about.socials.instagram}
-        onChange={(e) =>
-          setAbout({
-            ...about,
-            socials: { ...about.socials, instagram: e.target.value },
-          })
-        }
-      />
+        <input
+          type="text"
+          placeholder="Instagram URL"
+          value={about.socials.instagram}
+          onChange={(e) =>
+            setAbout({
+              ...about,
+              socials: { ...about.socials, instagram: e.target.value },
+            })
+          }
+        />
 
-      <input
-        type="text"
-        placeholder="Facebook URL"
-        value={about.socials.facebook}
-        onChange={(e) =>
-          setAbout({
-            ...about,
-            socials: { ...about.socials, facebook: e.target.value },
-          })
-        }
-      />
-
-      <hr />
+        <input
+          type="text"
+          placeholder="Facebook URL"
+          value={about.socials.facebook}
+          onChange={(e) =>
+            setAbout({
+              ...about,
+              socials: { ...about.socials, facebook: e.target.value },
+            })
+          }
+        />
+      </div>
 
       {/* SAVE */}
       <button className="save-btn" onClick={saveAbout} disabled={saving}>
@@ -206,6 +210,7 @@ const AboutMe = () => {
       </button>
     </div>
   );
+
 };
 
 export default AboutMe;

@@ -35,8 +35,10 @@ const AdminLayout = () => {
           <NavLink to="/admin/hero">🖼 Edit Hero</NavLink>
           <NavLink to="/admin/aboutme">👤 About Me</NavLink>
           <NavLink to="/admin/vision">🌿 Vision</NavLink>
+          <NavLink to="/admin/serve">🤝 Serve</NavLink>
           <NavLink to="/admin/practice">🧘 Practices</NavLink>
           <NavLink to="/admin/social">🔗 Social Links</NavLink>
+          <NavLink to="/admin/process">⚙ Process</NavLink>
           <NavLink to="/admin/certificate">📜 Certificates</NavLink>
           <NavLink to="/admin/contact">📞 Contact</NavLink>
           <NavLink to="/admin/setting">⚙ Settings</NavLink>
