@@ -5,7 +5,7 @@ const ContactSection = () => {
   const [contact, setContact] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/users/profile").then((res) => {
+    axios.get("http://localhost:5000/api/contact").then((res) => {
       setContact(res.data);
     });
   }, []);
@@ -26,25 +26,31 @@ const ContactSection = () => {
 
       <div className="contact">
         <div className="contact-content">
-          <h2>{contact?.contactTitle || "Connect & Transform"}</h2>
+          <h2>{contact?.heading || "Connect & Transform"}</h2>
+
           <p>
-            {contact?.contactDesc ||
-              "Step into the space where awareness heals, where stillness becomes your guide, and where your natural intelligence reconnects with the flow of life."}
+            {contact?.description ||
+              "Step into the space where awareness heals, where stillness becomes your guide."}
           </p>
 
           <div className="contact-signature">
             <span>{contact?.name || "Rupendra Kayastha"}</span>
-            <small>{contact?.subtitle || "Mystic Yogi · Healer · Trainer"}</small>
+            <small>
+              {contact?.subtitle || "Mystic Yogi · Healer · Trainer"}
+            </small>
           </div>
 
           <p className="contact-info">
-            Email: {contact?.email || "Rupendra@email.com"}
+            Email: {contact?.email || "example@email.com"}
             <br />
-            {contact?.socials || "Instagram • GitHub • LinkedIn"}
+            {contact?.socials?.instagram && "Instagram "}
+            {contact?.socials?.youtube && "• YouTube "}
+            {contact?.socials?.linkedin && "• LinkedIn"}
           </p>
         </div>
       </div>
     </section>
   );
 };
+
 export default ContactSection;

@@ -28,7 +28,7 @@ const SocialMediaSection = () => {
           <a
             href={
               social?.instagramUrl ||
-              "https://www.instagram.com/rupendrakayastha?igsh=MWQ3NGxuZXFtcHd2eg=="
+              "https://www.instagram.com/"
             }
             target="_blank"
             rel="noreferrer"
@@ -52,7 +52,8 @@ const SocialMediaSection = () => {
           />
           <a
             href={
-              social?.facebookUrl || "https://www.facebook.com/rupen.kayastha"
+              social?.facebookUrl ||
+              "https://www.facebook.com/"
             }
             target="_blank"
             rel="noreferrer"
@@ -74,7 +75,6 @@ const SocialMediaSection = () => {
             }
             title="YouTube video"
             frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>
         </div>
@@ -82,7 +82,7 @@ const SocialMediaSection = () => {
         <a
           href={
             social?.youtubeChannelUrl ||
-            "https://www.youtube.com/@rupendrakayastha/videos"
+            "https://www.youtube.com/"
           }
           target="_blank"
           rel="noreferrer"
@@ -94,4 +94,5 @@ const SocialMediaSection = () => {
     </section>
   );
 };
+
 export default SocialMediaSection;

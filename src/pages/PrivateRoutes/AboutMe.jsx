@@ -115,7 +115,7 @@ const AboutMe = () => {
 
   /* ---------------- UI ---------------- */
   return (
-    <div className="about-admin">
+    <div className="admin-about">
       <h1>Edit About Me</h1>
 
       {/* SECTION TITLE */}
@@ -137,7 +137,7 @@ const AboutMe = () => {
           <img
             src={imagePreview}
             alt="Preview"
-            className="about-image-preview"
+            className="admin-about img"
           />
         )}
       </div>

@@ -928,42 +928,162 @@ body {
 
 
 /* ===================== ADMIN ABOUT ===================== */
+/* ================= ADMIN ABOUT (SINGLE COLUMN) ================= */
+
 .admin-about {
-  padding: 120px 80px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 40px;
   background: var(--bg-main);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 90px;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  animation: fadeUp 0.8s ease forwards;
 }
 
-.admin-about img {
-  width: 100%;
-  height: 460px;
-  object-fit: cover;
-  border-radius: 28px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
-}
-
-.admin-about h2 {
+/* Page title */
+.admin-about h1 {
   font-family: "Playfair Display", serif;
-  font-size: 48px;
-  margin-bottom: 24px;
+  font-size: 42px;
+  text-align: center;
+  margin-bottom: 10px;
+  color: var(--text-dark);
 }
 
-.admin-about p {
-  font-size: 17px;
-  line-height: 2;
+/* ================= SECTION CARD ================= */
+
+.section-card {
+  background: #ffffff;
+  padding: 36px;
+  border-radius: 26px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.section-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+}
+
+/* Section titles */
+.section-card h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  margin-bottom: 6px;
+  color: var(--text-dark);
+}
+
+/* Labels */
+.section-card label {
+  font-size: 14px;
+  font-weight: 600;
   color: var(--text-muted);
 }
 
-.admin-about blockquote {
-  margin-top: 30px;
-  font-family: "Playfair Display", serif;
-  font-size: 22px;
-  padding-left: 24px;
-  border-left: 3px solid var(--secondary);
-  color: var(--text-dark);
+/* Inputs */
+.section-card input,
+.section-card textarea {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
+}
+
+.section-card input:focus,
+.section-card textarea:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 3px rgba(160, 120, 80, 0.15);
+}
+
+/* ================= IMAGE PREVIEW ================= */
+
+.admin-about img {
+  width: 240px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 28px;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  animation: imageReveal 0.6s ease forwards;
+}
+
+/* Hover */
+.admin-about img:hover {
+  transform: scale(1.04);
+  transition: transform 0.4s ease;
+}
+
+/* ================= SAVE BUTTON ================= */
+
+.save-btn {
+  margin-top: 20px;
+  padding: 16px 44px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  color: #fff;
+  cursor: pointer;
+  align-self: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+}
+
+.save-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes imageReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 600px) {
+  .admin-about {
+    padding: 70px 20px;
+  }
+
+  .admin-about h1 {
+    font-size: 34px;
+  }
+
+  .admin-about img {
+    width: 200px;
+    height: 280px;
+  }
 }
 
 
@@ -1003,54 +1123,154 @@ body {
 
 
 /* ===================== ADMIN SERVE ===================== */
+
 .admin-serve {
-  padding: 120px 80px;
-  background: linear-gradient(180deg, #edf4fa, #e6f0f7);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 100px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 40px;
+  background: var(--bg-main);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  animation: fadeUp 0.8s ease forwards;
 }
 
+/* Page title */
+.admin-serve h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
+  text-align: center;
+  margin-bottom: 10px;
+  color: var(--text-dark);
+}
+
+/* Section headings */
 .admin-serve h2 {
   font-family: "Playfair Display", serif;
-  font-size: 48px;
-  margin-bottom: 28px;
-}
-
-.admin-serve ul {
-  list-style: none;
-}
-
-.admin-serve li {
-  position: relative;
-  padding-left: 28px;
-  margin-bottom: 16px;
-  font-size: 17px;
-  color: var(--text-muted);
-}
-
-.admin-serve li::before {
-  content: "✦";
-  position: absolute;
-  left: 0;
-  color: var(--secondary);
-}
-
-.admin-serve-note {
+  font-size: 28px;
   margin-top: 30px;
-  font-size: 15px;
-  line-height: 1.9;
-  color: var(--text-muted);
+  margin-bottom: 10px;
+  color: var(--text-dark);
 }
 
-.admin-serve-image {
-  width: 100%;
-  height: 420px;
+/* ================= FORM CARD ================= */
+
+.admin-serve input,
+.admin-serve textarea {
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
+}
+
+.admin-serve textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Focus */
+.admin-serve input:focus,
+.admin-serve textarea:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 3px rgba(160, 120, 80, 0.15);
+}
+
+/* ================= FILE INPUT ================= */
+
+.admin-serve input[type="file"] {
+  border: none;
+  padding: 0;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ================= IMAGE PREVIEW ================= */
+
+.admin-serve img {
+  width: 240px;
+  height: 320px;
   object-fit: cover;
   border-radius: 28px;
-  box-shadow: 0 28px 65px rgba(0, 0, 0, 0.15);
+  margin-top: 10px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  animation: imageReveal 0.6s ease forwards;
 }
 
+/* ================= SAVE BUTTON ================= */
+
+.admin-serve .save-btn {
+  margin-top: 30px;
+  padding: 16px 44px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  color: #fff;
+  cursor: pointer;
+  align-self: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-serve .save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+}
+
+.admin-serve .save-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ================= VISUAL GROUPING ================= */
+
+.admin-serve h2 + input,
+.admin-serve h2 + textarea {
+  margin-top: 10px;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes imageReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 600px) {
+  .admin-serve {
+    padding: 70px 20px;
+  }
+
+  .admin-serve h1 {
+    font-size: 34px;
+  }
+
+  .admin-serve img {
+    width: 200px;
+    height: 280px;
+  }
+}
 
 /* ===================== ADMIN PROCESS ===================== */
 .admin-process {

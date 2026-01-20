@@ -8,9 +8,18 @@ const AboutSection = () => {
   const [about, setAbout] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/about")
-      .then(res => setAbout(res.data));
+    fetchData();
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/about");
+      console.log(response.data);
+      setAbout(response.data);
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   const imageUrl = about?.image
     ? about.image.startsWith("http")

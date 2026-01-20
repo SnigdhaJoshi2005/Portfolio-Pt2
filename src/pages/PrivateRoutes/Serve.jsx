@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "../../App.css";
 
 const API = "http://localhost:5000/api/serve";
 
@@ -52,8 +53,9 @@ const Serve = () => {
     alert("Serve section updated ✅");
   };
 
+  /* ---------------- UI ---------------- */
   return (
-    <div className="about-admin">
+    <div className="admin-serve">
       <h1>Edit Serve Section</h1>
 
       <h2>Who He Serves</h2>

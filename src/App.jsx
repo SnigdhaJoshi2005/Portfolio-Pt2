@@ -16,8 +16,8 @@ import AboutMe from "./pages/PrivateRoutes/AboutMe";
 import Vision from "./pages/PrivateRoutes/Vision";
 import Serve from "./pages/PrivateRoutes/Serve";
 import Practice from "./pages/PrivateRoutes/Practice";
-import PracticeSection from "./pages/PublicRoutes/PracticeSection";
-import PracticeDetail from "./pages/PublicRoutes/PracticeDetail";
+import PracticeSection from "./components/PracticeSection";
+import PracticeDetail from "./components/PracticeDetail";
 import Social from "./pages/PrivateRoutes/Social";
 import Process from "./pages/PrivateRoutes/Process";
 import Certificate from "./pages/PrivateRoutes/Certificate";
@@ -26,7 +26,7 @@ import Setting from "./pages/PrivateRoutes/Setting";
 
 function App() {
   return (
-    <Router>
+    // <Router>
       <Routes>
         {/* 🌍 PUBLIC ROUTES */}
         <Route element={<PublicLayout />}>
@@ -52,7 +52,7 @@ function App() {
 
         </Route>
       </Routes>
-    </Router>
+    // </Router>
   );
 }
 
