@@ -818,8 +818,8 @@ body {
 /* CARDS */
 .admin-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 32px;
 }
 
 .admin-card-link {
@@ -894,43 +894,111 @@ body {
 }
 
 /* ===================== ADMIN HERO ===================== */
+
 .admin-hero {
-  padding: 100px 80px;
-  background: linear-gradient(135deg, #f4f9fc, #e6f0f7);
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 80px;
-  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 40px;
+  background: var(--bg-main);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  animation: fadeUp 0.8s ease forwards;
 }
 
+/* Page title */
 .admin-hero h1 {
   font-family: "Playfair Display", serif;
-  font-size: 72px;
-  line-height: 1.1;
-  letter-spacing: 2px;
-  margin-bottom: 24px;
+  font-size: 42px;
+  text-align: center;
+  margin-bottom: 10px;
+  color: var(--text-dark);
 }
 
-.admin-hero p {
-  font-size: 18px;
-  line-height: 1.9;
-  color: var(--text-muted);
-  max-width: 520px;
+/* ================= HERO IMAGES ================= */
+
+.hero-images {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.admin-hero img {
-  width: 100%;
-  height: 420px;
+.hero-images img {
+  width: 240px;
+  height: 160px;
   object-fit: cover;
-  border-radius: 26px;
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.12);
+  border-radius: 28px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  animation: imageReveal 0.6s ease forwards;
 }
 
+.hero-images img:hover {
+  transform: scale(1.04);
+  transition: transform 0.4s ease;
+}
 
-/* ===================== ADMIN ABOUT ===================== */
-/* ================= ADMIN ABOUT (SINGLE COLUMN) ================= */
+/* Remove button */
+.remove-btn {
+  margin-top: 8px;
+  background: none;
+  border: none;
+  color: #c45b5b;
+  font-size: 14px;
+  cursor: pointer;
+  align-self: center;
+}
 
-.admin-about {
+.remove-btn:hover {
+  text-decoration: underline;
+}
+
+/* ================= SAVE BUTTON ================= */
+
+.save-btn {
+  margin-top: 20px;
+  padding: 16px 44px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  color: #fff;
+  cursor: pointer;
+  align-self: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+}
+
+.save-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 600px) {
+  .about-admin {
+    padding: 70px 20px;
+  }
+
+  .about-admin h1 {
+    font-size: 34px;
+  }
+
+  .hero-images img {
+    width: 200px;
+    height: 140px;
+  }
+}
+
+/* ===================== ADMIN VISION ===================== */
+
+.admin-vision {
   max-width: 900px;
   margin: 0 auto;
   padding: 100px 40px;
@@ -1086,44 +1154,53 @@ body {
   }
 }
 
+/* ================= TEXTAREA ================= */
 
-/* ===================== ADMIN VISION ===================== */
-.admin-vision {
-  padding: 110px 80px;
-  background: var(--bg-soft);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 50px;
+/* .section-card textarea {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  resize: vertical;
+  min-height: 140px;
+  outline: none;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
 }
 
-.admin-vision-card {
-  background: #ffffff;
-  border-radius: 26px;
-  padding: 45px 38px;
-  box-shadow: 0 25px 60px rgba(35, 82, 86, 0.18);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
+.section-card textarea:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 3px rgba(160, 120, 80, 0.15); 
+}*/
 
-.admin-vision-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 35px 80px rgba(35, 82, 86, 0.28);
-}
+/* ================= PREVIEW IMAGE (MATCH ABOUT) ================= */
 
-.admin-vision-card h3 {
-  font-family: "Playfair Display", serif;
-  font-size: 28px;
-  margin-bottom: 14px;
-}
+/* .section-card img {
+  width: 240px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 28px;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  animation: imageReveal 0.6s ease forwards;
+} */
 
-.admin-vision-card p {
-  font-size: 16px;
-  line-height: 1.9;
-  color: var(--text-muted);
-}
+/* .section-card img:hover {
+  transform: scale(1.04);
+  transition: transform 0.4s ease;
+} */
+
+/* ================= RESPONSIVE ================= */
+
+/* @media (max-width: 600px) {
+  .section-card img {
+    width: 200px;
+    height: 280px;
+  }
+}  */
 
 
 /* ===================== ADMIN SERVE ===================== */
-
 .admin-serve {
   max-width: 900px;
   margin: 0 auto;
@@ -1136,7 +1213,7 @@ body {
 }
 
 /* Page title */
-.admin-serve h1 {
+.admin-about h1 {
   font-family: "Playfair Display", serif;
   font-size: 42px;
   text-align: center;
@@ -1144,64 +1221,300 @@ body {
   color: var(--text-dark);
 }
 
-/* Section headings */
-.admin-serve h2 {
+/* ================= SECTION CARD ================= */
+
+.section-card {
+  background: #ffffff;
+  padding: 36px;
+  border-radius: 26px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.section-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+}
+
+/* Section titles */
+.section-card h2 {
   font-family: "Playfair Display", serif;
-  font-size: 28px;
-  margin-top: 30px;
-  margin-bottom: 10px;
+  font-size: 26px;
+  margin-bottom: 6px;
   color: var(--text-dark);
 }
 
-/* ================= FORM CARD ================= */
+/* Labels */
+.section-card label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
 
-.admin-serve input,
-.admin-serve textarea {
+/* Inputs */
+.section-card input,
+.section-card textarea {
   padding: 14px 16px;
-  border-radius: 14px;
+  border-radius: 12px;
   border: 1px solid #ddd;
   font-size: 15px;
   outline: none;
   transition: border 0.25s ease, box-shadow 0.25s ease;
 }
 
-.admin-serve textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-/* Focus */
-.admin-serve input:focus,
-.admin-serve textarea:focus {
+.section-card input:focus,
+.section-card textarea:focus {
   border-color: var(--secondary);
   box-shadow: 0 0 0 3px rgba(160, 120, 80, 0.15);
 }
 
-/* ================= FILE INPUT ================= */
+/* ================= TEXTAREA ================= */
 
-.admin-serve input[type="file"] {
-  border: none;
-  padding: 0;
-  font-size: 14px;
-  cursor: pointer;
+.section-card textarea {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  resize: vertical;
+  min-height: 140px;
+  outline: none;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* ================= IMAGE PREVIEW ================= */
+.section-card textarea:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 3px rgba(160, 120, 80, 0.15);
+}
 
-.admin-serve img {
+/* ================= PREVIEW IMAGES ================= */
+
+.section-card img {
   width: 240px;
   height: 320px;
   object-fit: cover;
   border-radius: 28px;
-  margin-top: 10px;
+  margin: 0 auto;
+  display: block;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
   animation: imageReveal 0.6s ease forwards;
 }
 
+.section-card img:hover {
+  transform: scale(1.04);
+  transition: transform 0.4s ease;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 600px) {
+  .section-card img {
+    width: 200px;
+    height: 280px;
+  }
+}
+
+/* ===================== ADMIN PRACTICE ===================== */
+.admin-practice {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 40px;
+  background: var(--bg-main);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+/* Page title */
+.admin-about h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
+  text-align: center;
+  margin-bottom: 10px;
+  color: var(--text-dark);
+}
+
+/* ================= SECTION CARD ================= */
+
+.section-card {
+  background: #ffffff;
+  padding: 36px;
+  border-radius: 26px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.section-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+}
+
+/* Section titles */
+.section-card h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  margin-bottom: 6px;
+  color: var(--text-dark);
+}
+
+/* Labels */
+.section-card label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Inputs */
+.section-card input,
+.section-card textarea {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
+}
+
+.section-card input:focus,
+.section-card textarea:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 3px rgba(160, 120, 80, 0.15);
+}
+
+/* ================= TEXTAREA ================= */
+
+.section-card textarea {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  min-height: 140px;
+  outline: none;
+  resize: vertical;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
+}
+
+.section-card textarea:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 3px rgba(160, 120, 80, 0.15);
+}
+
+/* ================= IMAGE ================= */
+
+.section-card img {
+  width: 240px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 28px;
+  margin: 10px auto;
+  display: block;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  animation: imageReveal 0.6s ease forwards;
+}
+
+.section-card img:hover {
+  transform: scale(1.04);
+  transition: transform 0.4s ease;
+}
+
+/* ================= SECTION TITLES ================= */
+
+.admin-section-title {
+  font-family: "Playfair Display", serif;
+  font-size: 30px;
+  color: var(--text-dark);
+  margin: 40px 0 20px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 600px) {
+  .section-card img {
+    width: 200px;
+    height: 140px;
+  }
+}
+
+/* ===================== ADMIN SOCIAL MEDIA ===================== */
+.admin-social-media {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 40px;      
+  background: var(--bg-main);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  animation: fadeUp 0.8s ease forwards;
+} 
+
+/* Page title */
+.admin-about h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
+  text-align: center;
+  margin-bottom: 10px;
+  color: var(--text-dark);
+} 
+
+/* ================= SECTION CARD ================= */  
+.section-card {
+  background: #ffffff;
+  padding: 36px;
+  border-radius: 26px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.section-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+}
+
+/* Section titles */
+.section-card h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  margin-bottom: 6px;
+  color: var(--text-dark);
+}
+
+/* Labels */
+.section-card label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);   
+}
+
+/* Inputs */
+.section-card input,
+.section-card textarea {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
+} 
+
+.section-card input:focus,
+.section-card textarea:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 3px rgba(160, 120, 80, 0.15);
+}
+
 /* ================= SAVE BUTTON ================= */
 
-.admin-serve .save-btn {
-  margin-top: 30px;
+.save-btn {
+  margin-top: 20px;
   padding: 16px 44px;
   font-size: 16px;
   font-weight: 600;
@@ -1214,21 +1527,14 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.admin-serve .save-btn:hover {
+.save-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
 }
 
-.admin-serve .save-btn:disabled {
+.save-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-}
-
-/* ================= VISUAL GROUPING ================= */
-
-.admin-serve h2 + input,
-.admin-serve h2 + textarea {
-  margin-top: 10px;
 }
 
 /* ================= ANIMATIONS ================= */
@@ -1244,147 +1550,408 @@ body {
   }
 }
 
-@keyframes imageReveal {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 /* ================= RESPONSIVE ================= */
-
 @media (max-width: 600px) {
-  .admin-serve {
-    padding: 70px 20px;
-  }
-
-  .admin-serve h1 {
-    font-size: 34px;
-  }
-
-  .admin-serve img {
+  .section-card img {
     width: 200px;
-    height: 280px;
+    height: 140px;
   }
 }
 
 /* ===================== ADMIN PROCESS ===================== */
 .admin-process {
-  padding: 120px 100px;
-  background: var(--bg-soft);
+  max-width: 900px;
+  margin: 0 auto;       
+  padding: 100px 40px;
+  background: var(--bg-main);
+  display: flex;
+  flex-direction: column;   
+  gap: 40px;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+/* Page title */
+.admin-page h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
   text-align: center;
+  color: var(--text-dark);
+  margin-bottom: 20px;
 }
 
-.admin-process h2 {
-  font-family: "Playfair Display", serif;
-  font-size: 52px;
-  margin-bottom: 36px;
+/* ================= FORM CARD ================= */
+.admin-form {
+  background: #ffffff;
+  padding: 36px;
+  border-radius: 26px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-.admin-process blockquote {
+.admin-form:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+}
+
+.admin-form label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.admin-form input,
+.admin-form textarea {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
+  width: 100%;
+  resize: vertical;
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 3px rgba(160, 120, 80, 0.15);
+}
+
+/* ================= SAVE BUTTON ================= */
+.admin-form button[type="submit"] {
+  margin-top: 20px;
+  padding: 16px 44px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  color: #fff;
+  cursor: pointer;
+  align-self: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-form button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+}
+
+.admin-form button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 600px) {
+  .admin-page {
+    padding: 70px 20px;
+  }
+
+  .admin-page h1 {
+    font-size: 34px;
+  }
+
+  .admin-form {
+    padding: 24px;
+  }
+}
+
+/* ================= CERTIFICATE ================= */
+.admin-certificate {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 100px 40px;
+  background: var(--bg-main);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.admin-container h1 {
   font-family: "Playfair Display", serif;
-  font-size: 26px;
-  line-height: 1.6;
-  max-width: 820px;
-  margin: 0 auto 40px;
+  font-size: 42px;
+  text-align: center;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.admin-container .subtitle {
+  text-align: center;
+  font-size: 16px;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+/* ================= FORM ================= */
+.certificate-form {
+  background: #ffffff;
+  padding: 36px;
+  border-radius: 26px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.certificate-form:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+}
+
+.certificate-form h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
+  margin-bottom: 16px;
   color: var(--text-dark);
 }
 
-.admin-process p {
-  max-width: 860px;
-  margin: auto;
-  font-size: 18px;
-  line-height: 2.1;
-  color: var(--text-muted);
-}
-
-
-/* ===================== ADMIN CERTIFICATES ===================== */
-.admin-certificates {
-  padding: 130px 80px;
-  background: var(--bg-main);
-}
-
-.admin-certificates-header {
-  max-width: 700px;
-  margin-bottom: 70px;
-}
-
-.admin-certificates-header h2 {
-  font-family: "Playfair Display", serif;
-  font-size: 48px;
-  margin-bottom: 16px;
-}
-
-.admin-certificates-header p {
-  font-size: 16px;
-  line-height: 1.9;
-  color: var(--text-muted);
-}
-
-.admin-certificates-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 50px;
-}
-
-.admin-certificate-card {
-  background: #ffffff;
-  padding: 28px;
-  border-radius: 26px;
-  box-shadow: 0 25px 60px rgba(35, 82, 86, 0.25);
-  transition: transform 0.4s ease;
-}
-
-.admin-certificate-card:hover {
-  transform: translateY(-10px);
-}
-
-.admin-certificate-card img {
+.certificate-form input,
+.certificate-form textarea {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
   width: 100%;
-  height: 360px;
-  object-fit: cover;
-  border-radius: 18px;
-  margin-bottom: 18px;
+  resize: vertical;
 }
 
-.admin-certificate-card h4 {
+.certificate-form input:focus,
+.certificate-form textarea:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 3px rgba(160, 120, 80, 0.15);
+}
+
+.certificate-form button {
+  margin-top: 20px;
+  padding: 16px 44px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  color: #fff;
+  cursor: pointer;
+  align-self: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certificate-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+}
+
+/* ================= CERTIFICATE GRID ================= */
+.certificate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.certificate-card {
+  background: #ffffff;
+  border-radius: 26px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.certificate-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+}
+
+.certificate-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease;
+}
+
+.certificate-card img:hover {
+  transform: scale(1.04);
+}
+
+.certificate-card h4 {
   font-family: "Playfair Display", serif;
   font-size: 20px;
-  margin-bottom: 8px;
+  color: var(--text-dark);
 }
 
-.admin-certificate-card p {
+.certificate-card p {
   font-size: 14px;
-  line-height: 1.8;
   color: var(--text-muted);
 }
 
+/* ================= CARD ACTIONS ================= */
+.certificate-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
 
-/* ===================== RESPONSIVE ===================== */
-@media (max-width: 900px) {
-  .admin-hero,
-  .admin-about,
-  .admin-serve {
-    grid-template-columns: 1fr;
-    padding: 80px 30px;
+.certificate-actions button {
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.certificate-actions .btn-edit {
+  background-color: var(--secondary);
+  color: #fff;
+}
+
+.certificate-actions .btn-delete {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.certificate-actions button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-
-  .admin-vision {
-    grid-template-columns: 1fr;
-    padding: 80px 30px;
-  }
-
-  .admin-process {
-    padding: 80px 30px;
-  }
-
-  .admin-certificates {
-    padding: 80px 30px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+/* ================= RESPONSIVE ================= */
+@media (max-width: 600px) {
+  .admin-container {
+    padding: 70px 20px;
+  }
+
+  .certificate-card img {
+    height: 160px;
+  }
+
+  .certificate-form {
+    padding: 24px;
+  }
+}
+
+/* ===================== CONTACT SECTION ===================== */
+.admin-contact {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 40px;
+  background: var(--bg-main);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.admin-contact h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
+  text-align: center;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+/* ================= INPUTS & TEXTAREA ================= */
+.admin-contact input,
+.admin-contact textarea {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
+  width: 100%;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+.admin-contact input:focus,
+.admin-contact textarea:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 3px rgba(160, 120, 80, 0.15);
+}
+
+/* ================= SAVE BUTTON ================= */
+.admin-contact button {
+  margin-top: 20px;
+  padding: 16px 44px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  color: #fff;
+  cursor: pointer;
+  align-self: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-contact button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+}
+
+.admin-contact button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 600px) {
+  .admin-contact {
+    padding: 70px 20px;
+  }
+
+  .admin-contact h1 {
+    font-size: 34px;
+  }
+}

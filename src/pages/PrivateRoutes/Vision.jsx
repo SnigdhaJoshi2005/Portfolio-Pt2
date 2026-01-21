@@ -59,38 +59,43 @@ const Vision = () => {
 
   if (loading) return <p>Loading...</p>;
 
+  /* ---------------- UI ---------------- */
   return (
-    <div className="about-admin">
+    <div className="admin-vision">
       <h1>Edit Vision</h1>
 
-      <label>Title</label>
-      <input
-        type="text"
-        value={vision.title}
-        onChange={(e) => setVision({ ...vision, title: e.target.value })}
-      />
+      <div className="section-card">
+        <h2>Vision Content</h2>
 
-      <label>Description</label>
-      <textarea
-        rows="6"
-        value={vision.description}
-        onChange={(e) => setVision({ ...vision, description: e.target.value })}
-      />
-
-      <label>Upload Image</label>
-      <input type="file" accept="image/*" onChange={handleImageChange} />
-
-      {preview && (
-        <img
-          src={preview}
-          alt="Preview"
-          style={{ maxWidth: "400px", marginTop: "10px", borderRadius: "10px" }}
+        <label>Title</label>
+        <input
+          type="text"
+          value={vision.title}
+          onChange={(e) => setVision({ ...vision, title: e.target.value })}
         />
-      )}
 
-      <button className="save-btn" onClick={saveVision}>
-        Save Vision
-      </button>
+        <label>Description</label>
+        <textarea
+          rows="6"
+          value={vision.description}
+          onChange={(e) => setVision({ ...vision, description: e.target.value })}
+        />
+
+        <label>Upload Image</label>
+        <input type="file" accept="image/*" onChange={handleImageChange} />
+
+        {preview && (
+          <img
+            src={preview}
+            alt="Preview"
+            style={{ maxWidth: "400px", marginTop: "10px", borderRadius: "10px" }}
+          />
+        )}
+
+        <button className="save-btn" onClick={saveVision}>
+          Save Vision
+        </button>
+      </div>
     </div>
   );
 };

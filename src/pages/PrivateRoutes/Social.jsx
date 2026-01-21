@@ -34,65 +34,73 @@ export default function Social() {
   };
 
   return (
-    <div className="admin-form">
+    <div className="admin-social-media">
       <h1>Edit Social Section</h1>
 
-      <h3>Instagram</h3>
-      <input
-        placeholder="Instagram Image URL / path"
-        value={social.instagramImg}
-        onChange={(e) =>
-          setSocial({ ...social, instagramImg: e.target.value })
-        }
-      />
-      <input
-        placeholder="Instagram Profile URL"
-        value={social.instagramUrl}
-        onChange={(e) =>
-          setSocial({ ...social, instagramUrl: e.target.value })
-        }
-      />
+      <div className="section-card">
+        <h3>Instagram</h3>
+        <input
+          placeholder="Instagram Image URL / path"
+          value={social.instagramImg}
+          onChange={(e) =>
+            setSocial({ ...social, instagramImg: e.target.value })
+          }
+        />
+        <input
+          placeholder="Instagram Profile URL"
+          value={social.instagramUrl}
+          onChange={(e) =>
+            setSocial({ ...social, instagramUrl: e.target.value })
+          }
+        />
+        </div>
 
-      <h3>Facebook</h3>
-      <input
-        placeholder="Facebook Image URL / path"
-        value={social.facebookImg}
-        onChange={(e) =>
-          setSocial({ ...social, facebookImg: e.target.value })
-        }
-      />
-      <input
-        placeholder="Facebook Profile URL"
-        value={social.facebookUrl}
-        onChange={(e) =>
-          setSocial({ ...social, facebookUrl: e.target.value })
-        }
-      />
+      <div className="section-card">
 
-      <h3>YouTube</h3>
-      <input
-        placeholder="YouTube Section Title"
-        value={social.youtubeTitle}
-        onChange={(e) =>
-          setSocial({ ...social, youtubeTitle: e.target.value })
-        }
-      />
-      <input
-        placeholder="YouTube Embed URL (iframe src)"
-        value={social.youtubeEmbedUrl}
-        onChange={(e) =>
-          setSocial({ ...social, youtubeEmbedUrl: e.target.value })
-        }
-      />
-      <input
-        placeholder="YouTube Channel URL"
-        value={social.youtubeChannelUrl}
-        onChange={(e) =>
-          setSocial({ ...social, youtubeChannelUrl: e.target.value })
-        }
-      />
+        <h3>Facebook</h3>
+        <input
+          placeholder="Facebook Image URL / path"
+          value={social.facebookImg}
+          onChange={(e) =>
+            setSocial({ ...social, facebookImg: e.target.value })
+          }
+        />
+        <input
+          placeholder="Facebook Profile URL"
+          value={social.facebookUrl}
+          onChange={(e) =>
+            setSocial({ ...social, facebookUrl: e.target.value })
+          }
+        />
+      </div>
 
-      <button onClick={saveSocial}>Save Social Section</button>
+      <div className="section-card">
+
+        <h3>YouTube</h3>
+        <input
+          placeholder="YouTube Section Title"
+          value={social.youtubeTitle}
+          onChange={(e) =>
+            setSocial({ ...social, youtubeTitle: e.target.value })
+          }
+        />
+        <input
+          placeholder="YouTube Embed URL (iframe src)"
+          value={social.youtubeEmbedUrl}
+          onChange={(e) =>
+            setSocial({ ...social, youtubeEmbedUrl: e.target.value })
+          }
+        />
+        <input
+          placeholder="YouTube Channel URL"
+          value={social.youtubeChannelUrl}
+          onChange={(e) =>
+            setSocial({ ...social, youtubeChannelUrl: e.target.value })
+          }
+        />
+
+        <button onClick={saveSocial} className="save-btn">Save Social Section</button>
+      </div>
     </div>
   );
 }

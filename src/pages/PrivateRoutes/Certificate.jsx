@@ -16,6 +16,7 @@ const Certificate = () => {
       const res = await fetch("/api/certificates", {
         credentials: "include",
       });
+      console.log(res);
       const data = await res.json();
       setCertificates(data);
     } catch (err) {

@@ -75,60 +75,67 @@ export default function HeroAdmin() {
   };
 
   return (
-    <div className="about-admin">
+    <div className="admin-hero">
       <h1>Edit Hero Section</h1>
 
-      <label>Title</label>
-      <input
-        name="title"
-        value={form.title}
-        onChange={handleChange}
-      />
+      <div className="section-card">
+        <h2>Hero Content</h2>
 
-      <label>Name</label>
-      <input
-        name="name"
-        value={form.name}
-        onChange={handleChange}
-      />
+        <label>Title</label>
+        <input
+          name="title"
+          value={form.title}
+          onChange={handleChange}
+        />
 
-      <label>Subtitle</label>
-      <input
-        name="subtitle"
-        value={form.subtitle}
-        onChange={handleChange}
-      />
+        <label>Name</label>
+        <input
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+        />
 
-      <hr />
+        <label>Subtitle</label>
+        <input
+          name="subtitle"
+          value={form.subtitle}
+          onChange={handleChange}
+        />
 
-      <h3>Carousel Images</h3>
+        <hr />
+      </div >
 
-      <input type="file" multiple onChange={handleImageSelect} />
+      <div className="section-card">
+        <h3>Carousel Images</h3>
 
-      <div style={{ display: "flex", gap: 16, marginTop: 20, flexWrap: "wrap" }}>
-        {form.images?.map((img, i) => (
-          <div key={i}>
-            <img
-              src={img.startsWith("http") || img.startsWith("src") ? img : `http://localhost:5000/${img}`}
-              style={{ width: 160, borderRadius: 10 }}
-            />
-            <button
-              className="remove-btn"
-              onClick={() => removeImage(i)}
-            >
-              Remove
-            </button>
-          </div>
-        ))}
+        <input type="file" multiple onChange={handleImageSelect} />
+
+        <div className="hero-images">
+          {form.images?.map((img, i) => (
+            <div key={i}>
+              <img
+                src={img.startsWith("http") || img.startsWith("src") ? img : `http://localhost:5000/${img}`}
+                style={{ width: 160, borderRadius: 10 }}
+              />
+              <button
+                className="remove-btn"
+                onClick={() => removeImage(i)}
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <button
+          className="save-btn"
+          onClick={saveHero}
+          disabled={loading}
+        >
+          {loading ? "Saving..." : "Save Hero Section"}
+        </button>
       </div>
+    </div >
 
-      <button
-        className="save-btn"
-        onClick={saveHero}
-        disabled={loading}
-      >
-        {loading ? "Saving..." : "Save Hero Section"}
-      </button>
-    </div>
   );
 }

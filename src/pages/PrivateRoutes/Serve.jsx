@@ -58,70 +58,79 @@ const Serve = () => {
     <div className="admin-serve">
       <h1>Edit Serve Section</h1>
 
-      <h2>Who He Serves</h2>
-      <input
-        placeholder="Title"
-        value={serve.title1}
-        onChange={(e) => setServe({ ...serve, title1: e.target.value })}
-      />
+      {/* WHO HE SERVES */}
+      <div className="section-card">
+        <h2>Who He Serves</h2>
 
-      <textarea
-        placeholder="Description"
-        value={serve.description1}
-        onChange={(e) => setServe({ ...serve, description1: e.target.value })}
-      />
+        <label>Title</label>
+        <input
+          value={serve.title1}
+          onChange={(e) => setServe({ ...serve, title1: e.target.value })}
+        />
 
-      <textarea
-        placeholder="List (one per line)"
-        value={serve.list.join("\n")}
-        onChange={(e) =>
-          setServe({ ...serve, list: e.target.value.split("\n") })
-        }
-      />
+        <label>Description</label>
+        <textarea
+          value={serve.description1}
+          onChange={(e) => setServe({ ...serve, description1: e.target.value })}
+        />
 
-      <input
-        type="file"
-        onChange={(e) => {
-          setServe({ ...serve, image1: e.target.files[0] });
-          setPreview1(URL.createObjectURL(e.target.files[0]));
-        }}
-      />
+        <label>List Items (one per line)</label>
+        <textarea
+          value={serve.list.join("\n")}
+          onChange={(e) =>
+            setServe({ ...serve, list: e.target.value.split("\n") })
+          }
+        />
 
-      {preview1 && <img src={preview1} style={{ maxWidth: "300px" }} />}
+        <label>Image</label>
+        <input
+          type="file"
+          onChange={(e) => {
+            setServe({ ...serve, image1: e.target.files[0] });
+            setPreview1(URL.createObjectURL(e.target.files[0]));
+          }}
+        />
 
-      <h2>Global Vision</h2>
+        {preview1 && <img src={preview1} style={{ maxWidth: "300px" }} />}
+      </div>
 
-      <input
-        placeholder="Title"
-        value={serve.title2}
-        onChange={(e) => setServe({ ...serve, title2: e.target.value })}
-      />
+      {/* GLOBAL VISION */}
+      <div className="section-card">
+        <h2>Global Vision</h2>
 
-      <textarea
-        placeholder="Description"
-        value={serve.description2}
-        onChange={(e) => setServe({ ...serve, description2: e.target.value })}
-      />
+        <label>Title</label>
+        <input
+          value={serve.title2}
+          onChange={(e) => setServe({ ...serve, title2: e.target.value })}
+        />
 
-      <input
-        placeholder="Quote"
-        value={serve.quote}
-        onChange={(e) => setServe({ ...serve, quote: e.target.value })}
-      />
+        <label>Description</label>
+        <textarea
+          value={serve.description2}
+          onChange={(e) => setServe({ ...serve, description2: e.target.value })}
+        />
 
-      <input
-        type="file"
-        onChange={(e) => {
-          setServe({ ...serve, image2: e.target.files[0] });
-          setPreview2(URL.createObjectURL(e.target.files[0]));
-        }}
-      />
+        <label>Quote</label>
+        <input
+          value={serve.quote}
+          onChange={(e) => setServe({ ...serve, quote: e.target.value })}
+        />
 
-      {preview2 && <img src={preview2} style={{ maxWidth: "300px" }} />}
+        <label>Image</label>
+        <input
+          type="file"
+          onChange={(e) => {
+            setServe({ ...serve, image2: e.target.files[0] });
+            setPreview2(URL.createObjectURL(e.target.files[0]));
+          }}
+        />
 
-      <button onClick={saveServe} className="save-btn">
-        Save Serve Section
-      </button>
+        {preview2 && <img src={preview2} style={{ maxWidth: "300px" }} />}
+
+        <button onClick={saveServe} className="save-btn">
+          Save Serve Section
+        </button>
+      </div>
     </div>
   );
 };

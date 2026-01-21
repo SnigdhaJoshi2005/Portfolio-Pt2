@@ -56,7 +56,7 @@ export default function Process() {
   };
 
   return (
-    <div className="admin-page">
+    <div className="admin-process">
       <h1>Edit Process Section</h1>
 
       <form onSubmit={handleSubmit} className="admin-form">

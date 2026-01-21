@@ -108,39 +108,37 @@ const Practice = () => {
     <div className="about-admin">
       <h1>Practice Admin Panel</h1>
 
-      {/* Form */}
-      <label>Title</label>
-      <input
-        type="text"
-        value={form.title}
-        onChange={(e) => setForm({ ...form, title: e.target.value })}
-      />
+      {/* ADD/EDIT PRACTICE FORM */}
+      <h2 className="admin-section-title">Add / Edit Practice</h2>
 
-      <label>Description</label>
-      <textarea
-        rows="5"
-        value={form.description}
-        onChange={(e) => setForm({ ...form, description: e.target.value })}
-      />
-
-      <label>Upload Image</label>
-      <input type="file" accept="image/*" onChange={handleImageChange} />
-
-      {imagePreview && (
-        <img
-          src={imagePreview}
-          alt="Preview"
-          style={{ width: "250px", marginTop: "10px", borderRadius: "10px" }}
+      <div className="section-card">
+        <label>Title</label>
+        <input
+          type="text"
+          value={form.title}
+          onChange={(e) => setForm({ ...form, title: e.target.value })}
         />
-      )}
 
-      <button className="save-btn" onClick={() => savePractice()} disabled={saving}>
-        {saving ? "Saving..." : "Add Practice"}
-      </button>
+        <label>Description</label>
+        <textarea
+          rows="5"
+          value={form.description}
+          onChange={(e) => setForm({ ...form, description: e.target.value })}
+        />
 
-      <hr />
+        <label>Upload Image</label>
+        <input type="file" accept="image/*" onChange={handleImageChange} />
 
-      {/* List of practices */}
+        {imagePreview && <img src={imagePreview} alt="Preview" />}
+
+        <button className="save-btn" onClick={() => savePractice()} disabled={saving}>
+          {saving ? "Saving..." : form._id ? "Update Practice" : "Add Practice"}
+        </button>
+      </div>
+
+      {/* LIST OF PRACTICES */}
+      <h2 className="admin-section-title">Existing Practices</h2>
+
       {practices.map((p) => (
         <div key={p._id} className="section-card">
           <h3>{p.title}</h3>
@@ -149,20 +147,27 @@ const Practice = () => {
             <img
               src={p.image.startsWith("http") ? p.image : `http://localhost:5000/${p.image}`}
               alt={p.title}
-              style={{ width: "200px", borderRadius: "8px" }}
             />
           )}
-          <div style={{ marginTop: "10px" }}>
-            <button onClick={() => setForm({ title: p.title, description: p.description, image: p.image })}>
+          <div style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
+            <button
+              onClick={() =>
+                setForm({ _id: p._id, title: p.title, description: p.description, image: p.image })
+              }
+            >
               Edit
             </button>
-            <button onClick={() => deletePractice(p._id)} style={{ marginLeft: "10px", background: "#ff4d4d", color: "#fff" }}>
+            <button
+              onClick={() => deletePractice(p._id)}
+              style={{ background: "#ff4d4d", color: "#fff" }}
+            >
               Delete
             </button>
           </div>
         </div>
       ))}
     </div>
+
   );
 };
 
