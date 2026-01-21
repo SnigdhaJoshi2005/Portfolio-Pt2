@@ -30,7 +30,6 @@ const Login = () => {
             const data = await res.json();
 
             if (res.ok) {
-                localStorage.setItem("token", data.token); // Save token for axios
                 navigate("/admin"); // redirect to admin dashboard
             } else {
                 alert(data.error || "Login failed");

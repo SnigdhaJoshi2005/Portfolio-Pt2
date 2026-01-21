@@ -27,12 +27,13 @@ const AboutMe = () => {
     const fetchAbout = async () => {
       try {
         const res = await axios.get(API, { withCredentials: true });
+        console.log(res.data.sections);
         if (res.data) {
           setAbout({
             title: res.data.title || "",
             image: res.data.image || "",
-            heading: res.data.heading || "",
-            description: res.data.description || "",
+            heading: res.data.sections[0]?.heading || "",
+            description: res.data.sections[0]?.text || "",
             socials: {
               linkedin: res.data.socials?.linkedin || "",
               instagram: res.data.socials?.instagram || "",
@@ -75,13 +76,7 @@ const AboutMe = () => {
   const saveAbout = async () => {
     try {
       setSaving(true);
-      const token = localStorage.getItem("token");
-      if (!token) {
-        alert("Session expired. Please login again.");
-        return;
-      }
 
-      // Use FormData for image upload
       const formData = new FormData();
       formData.append("title", about.title);
       formData.append("heading", about.heading);
@@ -95,11 +90,7 @@ const AboutMe = () => {
       }
 
       await axios.put(API, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-        withCredentials: true,
+        withCredentials: true, // ✅ cookie sent automatically
       });
 
       alert("About Me updated successfully ✅");
@@ -110,6 +101,7 @@ const AboutMe = () => {
       setSaving(false);
     }
   };
+
 
   if (loading) return <p>Loading About Me...</p>;
 
@@ -137,7 +129,6 @@ const AboutMe = () => {
           <img
             src={imagePreview}
             alt="Preview"
-            className="admin-about img"
           />
         )}
       </div>

@@ -734,6 +734,7 @@ body {
 /* ================= Admin Panel ================= */
 .admin-container {
   display: flex;
+  width: 100%;
   min-height: 100vh;
   font-family: "Inter", sans-serif;
   background: var(--bg-main);
@@ -801,6 +802,7 @@ body {
 
 .admin-main {
   padding: 40px;
+  width : 100%;
 }
 
 .admin-main h1 {
@@ -812,7 +814,9 @@ body {
 .admin-subtitle {
   color: #666;
   margin-bottom: 40px;
-  max-width: 600px;
+  text-align: center;
+  margin-top: 25px;
+  width : 100%;
 }
 
 /* CARDS */
@@ -996,6 +1000,27 @@ body {
   }
 }
 
+/* ===================== ADMIN ABOUT ===================== */
+.admin-about {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 40px;
+  background: var(--bg-main);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+/* Page title */
+.admin-about h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
+  text-align: center;
+  margin-bottom: 10px;
+  color: var(--text-dark);
+}
+
 /* ===================== ADMIN VISION ===================== */
 
 .admin-vision {
@@ -1068,25 +1093,6 @@ body {
   box-shadow: 0 0 0 3px rgba(160, 120, 80, 0.15);
 }
 
-/* ================= IMAGE PREVIEW ================= */
-
-.admin-about img {
-  width: 240px;
-  height: 320px;
-  object-fit: cover;
-  border-radius: 28px;
-  margin: 0 auto;
-  display: block;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
-  animation: imageReveal 0.6s ease forwards;
-}
-
-/* Hover */
-.admin-about img:hover {
-  transform: scale(1.04);
-  transition: transform 0.4s ease;
-}
-
 /* ================= SAVE BUTTON ================= */
 
 .save-btn {
@@ -1153,52 +1159,6 @@ body {
     height: 280px;
   }
 }
-
-/* ================= TEXTAREA ================= */
-
-/* .section-card textarea {
-  padding: 14px 16px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  font-size: 15px;
-  resize: vertical;
-  min-height: 140px;
-  outline: none;
-  transition: border 0.25s ease, box-shadow 0.25s ease;
-}
-
-.section-card textarea:focus {
-  border-color: var(--secondary);
-  box-shadow: 0 0 0 3px rgba(160, 120, 80, 0.15); 
-}*/
-
-/* ================= PREVIEW IMAGE (MATCH ABOUT) ================= */
-
-/* .section-card img {
-  width: 240px;
-  height: 320px;
-  object-fit: cover;
-  border-radius: 28px;
-  margin: 0 auto;
-  display: block;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
-  animation: imageReveal 0.6s ease forwards;
-} */
-
-/* .section-card img:hover {
-  transform: scale(1.04);
-  transition: transform 0.4s ease;
-} */
-
-/* ================= RESPONSIVE ================= */
-
-/* @media (max-width: 600px) {
-  .section-card img {
-    width: 200px;
-    height: 280px;
-  }
-}  */
-
 
 /* ===================== ADMIN SERVE ===================== */
 .admin-serve {
@@ -1292,13 +1252,12 @@ body {
 /* ================= PREVIEW IMAGES ================= */
 
 .section-card img {
-  width: 240px;
-  height: 320px;
-  object-fit: cover;
-  border-radius: 28px;
+  width: 25%;
+  object-fit: fill; 
+  border-radius: 20px;
   margin: 0 auto;
   display: block;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
   animation: imageReveal 0.6s ease forwards;
 }
 
@@ -1403,24 +1362,6 @@ body {
 .section-card textarea:focus {
   border-color: var(--secondary);
   box-shadow: 0 0 0 3px rgba(160, 120, 80, 0.15);
-}
-
-/* ================= IMAGE ================= */
-
-.section-card img {
-  width: 240px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 28px;
-  margin: 10px auto;
-  display: block;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
-  animation: imageReveal 0.6s ease forwards;
-}
-
-.section-card img:hover {
-  transform: scale(1.04);
-  transition: transform 0.4s ease;
 }
 
 /* ================= SECTION TITLES ================= */
