@@ -7,9 +7,9 @@ const LineageCertificateSection = () => {
   const [certificates, setCertificates] = useState([]);
 
   useEffect(() => {
-    fetch("/api/certificates")
-      .then((res) => res.json())
-      .then(setCertificates);
+    axios
+      .get("http://localhost:5000/api/certificates")
+      .then(res => setCertificates(res.data));
   }, []);
 
   return (
@@ -36,7 +36,16 @@ const LineageCertificateSection = () => {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 150 }}
             >
-              <img src={cert.image} alt={cert.title} />
+              <img
+                src={
+                  cert.image
+                    ? cert.image.startsWith("http")
+                      ? cert.image
+                      : `http://localhost:5000/${cert.image}`
+                    : ""
+                }
+                alt={cert.title}
+              />
               <h4>{cert.title}</h4>
               <p>{cert.description}</p>
             </motion.div>

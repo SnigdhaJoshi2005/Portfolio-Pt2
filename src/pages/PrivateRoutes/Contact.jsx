@@ -25,94 +25,135 @@ export default function Contact() {
     });
   }, []);
 
-  const saveContact = async () => {
+const saveContact = async () => {
+  try {
+    const formData = new FormData();
+    formData.append("heading", contact.heading);
+    formData.append("description", contact.description);
+    formData.append("name", contact.name);
+    formData.append("subtitle", contact.subtitle);
+    formData.append("email", contact.email);
+    formData.append("socials", JSON.stringify(contact.socials));
+
+    if (contact.image instanceof File) {
+      formData.append("image", contact.image);
+    }
+
     const token = localStorage.getItem("token");
 
-    await axios.post(API, contact, {
-      headers: { Authorization: `Bearer ${token}` },
+    await axios.post("http://localhost:5000/api/contact", formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+      withCredentials: true,
     });
 
     alert("Contact section updated ✅");
-  };
-
-  return (
+  } catch (err) {
+    console.error(err);
+    alert(err.response?.data?.error || "Failed to save contact ❌");
+  }
+};
+    return (
     <div className="admin-contact">
       <h1>Edit Contact Section</h1>
 
-      <input
-        placeholder="Heading"
-        value={contact.heading}
-        onChange={(e) =>
-          setContact({ ...contact, heading: e.target.value })
-        }
-      />
+      <div className="section-card">
+        <label>Heading</label>
+        <input
+          type="text"
+          value={contact.heading}
+          onChange={(e) =>
+            setContact({ ...contact, heading: e.target.value })
+          }
+        />
 
-      <textarea
-        placeholder="Description"
-        value={contact.description}
-        onChange={(e) =>
-          setContact({ ...contact, description: e.target.value })
-        }
-      />
+        <label>Description</label>
+        <textarea
+          rows="4"
+          value={contact.description}
+          onChange={(e) =>
+            setContact({ ...contact, description: e.target.value })
+          }
+        />
 
-      <input
-        placeholder="Name"
-        value={contact.name}
-        onChange={(e) =>
-          setContact({ ...contact, name: e.target.value })
-        }
-      />
+        <label>Name</label>
+        <input
+          type="text"
+          value={contact.name}
+          onChange={(e) =>
+            setContact({ ...contact, name: e.target.value })
+          }
+        />
 
-      <input
-        placeholder="Subtitle"
-        value={contact.subtitle}
-        onChange={(e) =>
-          setContact({ ...contact, subtitle: e.target.value })
-        }
-      />
+        <label>Subtitle</label>
+        <input
+          type="text"
+          value={contact.subtitle}
+          onChange={(e) =>
+            setContact({ ...contact, subtitle: e.target.value })
+          }
+        />
 
-      <input
-        placeholder="Email"
-        value={contact.email}
-        onChange={(e) =>
-          setContact({ ...contact, email: e.target.value })
-        }
-      />
+        <label>Email</label>
+        <input
+          type="email"
+          value={contact.email}
+          onChange={(e) =>
+            setContact({ ...contact, email: e.target.value })
+          }
+        />
 
-      <input
-        placeholder="Instagram URL"
-        value={contact.socials.instagram}
-        onChange={(e) =>
-          setContact({
-            ...contact,
-            socials: { ...contact.socials, instagram: e.target.value },
-          })
-        }
-      />
+        <label>Instagram URL</label>
+        <input
+          type="text"
+          value={contact.socials.instagram}
+          onChange={(e) =>
+            setContact({
+              ...contact,
+              socials: {
+                ...contact.socials,
+                instagram: e.target.value,
+              },
+            })
+          }
+        />
 
-      <input
-        placeholder="YouTube URL"
-        value={contact.socials.youtube}
-        onChange={(e) =>
-          setContact({
-            ...contact,
-            socials: { ...contact.socials, youtube: e.target.value },
-          })
-        }
-      />
+        <label>YouTube URL</label>
+        <input
+          type="text"
+          value={contact.socials.youtube}
+          onChange={(e) =>
+            setContact({
+              ...contact,
+              socials: {
+                ...contact.socials,
+                youtube: e.target.value,
+              },
+            })
+          }
+        />
 
-      <input
-        placeholder="LinkedIn URL"
-        value={contact.socials.linkedin}
-        onChange={(e) =>
-          setContact({
-            ...contact,
-            socials: { ...contact.socials, linkedin: e.target.value },
-          })
-        }
-      />
+        <label>LinkedIn URL</label>
+        <input
+          type="text"
+          value={contact.socials.linkedin}
+          onChange={(e) =>
+            setContact({
+              ...contact,
+              socials: {
+                ...contact.socials,
+                linkedin: e.target.value,
+              },
+            })
+          }
+        />
 
-      <button onClick={saveContact}>Save Contact</button>
+        <button className="save-btn" onClick={saveContact}>
+          Save Contact
+        </button>
+      </div>
     </div>
   );
 }

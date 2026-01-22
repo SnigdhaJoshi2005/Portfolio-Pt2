@@ -1,89 +1,53 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+
+const API = "http://localhost:5000/api/social";
+
+const resolveImage = (img) => {
+  if (!img) return "";
+  if (img.startsWith("http")) return img;
+  return `http://localhost:5000/${img}`;
+};
 
 const SocialMediaSection = () => {
   const [social, setSocial] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/social").then((res) => {
-      setSocial(res.data);
-    });
+    axios.get(API).then((res) => setSocial(res.data));
   }, []);
+
+  if (!social) return null;
 
   return (
     <section className="social-media" id="socials">
       <div className="social-left">
-        <div className="social-phone">
+        <a href={social.instagramUrl} target="_blank" rel="noreferrer">
           <img
-            src={
-              social?.instagramImg
-                ? social.instagramImg.startsWith("http") ||
-                  social.instagramImg.startsWith("src")
-                  ? social.instagramImg
-                  : `http://localhost:5000/${social.instagramImg}`
-                : "src/pictures/instagram.jpeg"
-            }
+            src={resolveImage(social.instagramImg)}
             alt="Instagram"
           />
-          <a
-            href={
-              social?.instagramUrl ||
-              "https://www.instagram.com/"
-            }
-            target="_blank"
-            rel="noreferrer"
-          >
-            <br />
-            Instagram
-          </a>
-        </div>
+        </a>
 
-        <div className="social-phone">
+        <a href={social.facebookUrl} target="_blank" rel="noreferrer">
           <img
-            src={
-              social?.facebookImg
-                ? social.facebookImg.startsWith("http") ||
-                  social.facebookImg.startsWith("src")
-                  ? social.facebookImg
-                  : `http://localhost:5000/${social.facebookImg}`
-                : "src/pictures/facebook.jpeg"
-            }
+            src={resolveImage(social.facebookImg)}
             alt="Facebook"
           />
-          <a
-            href={
-              social?.facebookUrl ||
-              "https://www.facebook.com/"
-            }
-            target="_blank"
-            rel="noreferrer"
-          >
-            <br />
-            Facebook
-          </a>
-        </div>
+        </a>
       </div>
 
       <div className="social-right">
-        <h2>{social?.youtubeTitle || "YOUTUBE VIDEOS"}</h2>
+        <h2>{social.youtubeTitle || "YOUTUBE VIDEOS"}</h2>
 
-        <div className="youtube-frame">
-          <iframe
-            src={
-              social?.youtubeEmbedUrl ||
-              "https://www.youtube.com/embed/vgLd1m8hkkQ"
-            }
-            title="YouTube video"
-            frameBorder="0"
-            allowFullScreen
-          ></iframe>
-        </div>
+        <iframe
+          src={social.youtubeEmbedUrl}
+          title="YouTube video"
+          frameBorder="0"
+          allowFullScreen
+        />
 
         <a
-          href={
-            social?.youtubeChannelUrl ||
-            "https://www.youtube.com/"
-          }
+          href={social.youtubeChannelUrl}
           target="_blank"
           rel="noreferrer"
           className="youtube-link"

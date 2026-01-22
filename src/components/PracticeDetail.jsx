@@ -16,16 +16,16 @@ const PracticeDetail = () => {
   if (!practice) return <p>Loading...</p>;
 
   return (
-    <div style={{ padding: "60px" }}>
-      <h1>{practice.title}</h1>
+    <div className="practice-detail">
+      <h1 className="practice-title">{practice.title}</h1>
       {practice.image && (
         <img
           src={practice.image.startsWith("http") ? practice.image : `http://localhost:5000/${practice.image}`}
           alt={practice.title}
-          style={{ width: "100%", maxWidth: "600px", borderRadius: "12px", marginBottom: "20px" }}
+          className="practice-detail-image"
         />
       )}
-      <p style={{ fontSize: "18px", lineHeight: "1.8" }}>{practice.description}</p>
+      <p className="practice-detail-description">{practice.description}</p>
     </div>
   );
 };

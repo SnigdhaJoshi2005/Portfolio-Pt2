@@ -41,7 +41,6 @@ const AdminLayout = () => {
           <NavLink to="/admin/process">⚙ Process</NavLink>
           <NavLink to="/admin/certificate">📜 Certificates</NavLink>
           <NavLink to="/admin/contact">📞 Contact</NavLink>
-          <NavLink to="/admin/setting"> Settings</NavLink>
         </nav>
 
         <button className="logout-btn" onClick={handleLogout}>

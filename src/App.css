@@ -1893,3 +1893,80 @@ body {
     font-size: 34px;
   }
 }
+
+/* ================= PRACTICE DETAIL ================= */
+
+.practice-detail {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 120px 60px;
+  background: var(--bg-main);
+}
+
+.practice-title {
+  font-family: "Playfair Display", serif;
+  font-size: 46px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--text-main);
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.practice-detail-image {
+  width: 100%;
+  max-width: 520px;
+  display: block;
+  margin: 0 auto 60px auto;
+  border-radius: 22px;
+
+  box-shadow:
+    0 20px 40px rgba(35, 82, 86, 0.18),
+    0 6px 14px rgba(35, 82, 86, 0.12);
+}
+
+.practice-detail-description {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.9;
+  color: var(--text-muted);
+}
+
+.practice-detail-image,
+.practice-detail-description {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+  .practice-detail {
+    padding: 80px 24px;
+  }
+
+  .practice-title {
+    font-size: 36px;
+    margin-bottom: 30px;
+  }
+
+  .practice-detail-image {
+    margin-bottom: 36px;
+  }
+
+  .practice-detail-description {
+    font-size: 16px;
+  }
+}

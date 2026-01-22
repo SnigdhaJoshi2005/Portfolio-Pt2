@@ -22,7 +22,7 @@ import Social from "./pages/PrivateRoutes/Social";
 import Process from "./pages/PrivateRoutes/Process";
 import Certificate from "./pages/PrivateRoutes/Certificate";
 import Contact from "./pages/PrivateRoutes/Contact";
-import Setting from "./pages/PrivateRoutes/Setting";
+
 
 function App() {
   return (
@@ -48,7 +48,6 @@ function App() {
           <Route path="process" element={<Process />} />
           <Route path="certificate" element={<Certificate />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="setting" element={<Setting />} />
 
         </Route>
       </Routes>

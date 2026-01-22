@@ -42,24 +42,33 @@ const Certificate = () => {
 
   // ADD / UPDATE CERTIFICATE
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const method = editingId ? "PUT" : "POST";
-    const url = editingId
-      ? `http://localhost:5000/api/certificates/${editingId}`
-      : "http://localhost:5000/api/certificates";
+  const method = editingId ? "PUT" : "POST";
+  const url = editingId
+    ? `http://localhost:5000/api/certificates/${editingId}`
+    : "http://localhost:5000/api/certificates";
 
-    await fetch(url, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify(form),
-    });
+  const formData = new FormData();
+  formData.append("title", form.title);
+  formData.append("description", form.description);
 
-    setForm({ title: "", description: "", image: "" });
-    setEditingId(null);
-    fetchCertificates();
-  };
+  if (form.image instanceof File) {
+    formData.append("image", form.image);
+  }
+
+  await fetch(url, {
+    method,
+    credentials: "include",
+    body: formData, // ✅ HERE
+  });
+
+  setForm({ title: "", description: "", image: "" });
+  setEditingId(null);
+  setImagePreview("");
+  fetchCertificates();
+};
+
 
   // EDIT
   const handleEdit = (cert) => {
@@ -70,6 +79,7 @@ const Certificate = () => {
       image: cert.image,
     });
   };
+
 
   // DELETE
   const handleDelete = async (id) => {

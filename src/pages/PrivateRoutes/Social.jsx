@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "../../App.css";
 
 const API = "http://localhost:5000/api/social";
 
@@ -39,34 +38,35 @@ export default function Social() {
 
       <div className="section-card">
         <h3>Instagram</h3>
+        <label>Image URL</label>
         <input
-          placeholder="Instagram Image URL / path"
           value={social.instagramImg}
           onChange={(e) =>
             setSocial({ ...social, instagramImg: e.target.value })
           }
         />
+
+        <label>Profile URL</label>
         <input
-          placeholder="Instagram Profile URL"
           value={social.instagramUrl}
           onChange={(e) =>
             setSocial({ ...social, instagramUrl: e.target.value })
           }
         />
-        </div>
+      </div>
 
       <div className="section-card">
-
         <h3>Facebook</h3>
+        <label>Image URL</label>
         <input
-          placeholder="Facebook Image URL / path"
           value={social.facebookImg}
           onChange={(e) =>
             setSocial({ ...social, facebookImg: e.target.value })
           }
         />
+
+        <label>Profile URL</label>
         <input
-          placeholder="Facebook Profile URL"
           value={social.facebookUrl}
           onChange={(e) =>
             setSocial({ ...social, facebookUrl: e.target.value })
@@ -75,31 +75,35 @@ export default function Social() {
       </div>
 
       <div className="section-card">
-
         <h3>YouTube</h3>
+
+        <label>Section Title</label>
         <input
-          placeholder="YouTube Section Title"
           value={social.youtubeTitle}
           onChange={(e) =>
             setSocial({ ...social, youtubeTitle: e.target.value })
           }
         />
+
+        <label>Embed URL (iframe src)</label>
         <input
-          placeholder="YouTube Embed URL (iframe src)"
           value={social.youtubeEmbedUrl}
           onChange={(e) =>
             setSocial({ ...social, youtubeEmbedUrl: e.target.value })
           }
         />
+
+        <label>Channel URL</label>
         <input
-          placeholder="YouTube Channel URL"
           value={social.youtubeChannelUrl}
           onChange={(e) =>
             setSocial({ ...social, youtubeChannelUrl: e.target.value })
           }
         />
 
-        <button onClick={saveSocial} className="save-btn">Save Social Section</button>
+        <button className="save-btn" onClick={saveSocial}>
+          Save Social Section
+        </button>
       </div>
     </div>
   );
