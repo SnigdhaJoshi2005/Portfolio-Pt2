@@ -1,26 +1,45 @@
-import { Outlet, Link, NavLink, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { Outlet, NavLink, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const AdminLayout = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/login");
-    }
+    const checkAuth = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/auth/me", {
+          credentials: "include",
+        });
+
+        console.log(res);
+
+        if (!res.ok) {
+          // Not authenticated
+          navigate("/login");
+        }
+      } catch (err) {
+        navigate("/login");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkAuth();
   }, [navigate]);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    // Also clear the cookie if possible (via backend call or just redirect)
-    fetch("http://localhost:5000/api/auth/logout", {
-      method: "POST",
-      credentials: "include",
-    }).finally(() => {
+  const handleLogout = async () => {
+    try {
+      await fetch("http://localhost:5000/api/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+    } finally {
       navigate("/login");
-    });
+    }
   };
+
+  if (loading) return null; // or spinner
 
   return (
     <div className="admin-container">
@@ -29,9 +48,7 @@ const AdminLayout = () => {
         <h2 className="admin-logo">Admin Panel</h2>
 
         <nav>
-          <NavLink to="/admin" end>
-            📊 Dashboard
-          </NavLink>
+          <NavLink to="/admin" end>📊 Dashboard</NavLink>
           <NavLink to="/admin/hero">🖼 Edit Hero</NavLink>
           <NavLink to="/admin/aboutme">👤 About Me</NavLink>
           <NavLink to="/admin/vision">🌿 Vision</NavLink>

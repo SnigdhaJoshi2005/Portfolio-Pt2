@@ -11,7 +11,7 @@ export default function Contact() {
     name: "",
     subtitle: "",
     email: "",
-    image: "",
+    image: null,
     socials: {
       instagram: "",
       youtube: "",
@@ -19,50 +19,65 @@ export default function Contact() {
     },
   });
 
+  /* ---------------- GET ---------------- */
   useEffect(() => {
-    axios.get(API).then((res) => {
-      if (res.data) setContact(res.data);
-    });
+    axios
+      .get(API, { withCredentials: true }) // ✅ COOKIE
+      .then((res) => {
+        if (!res.data) return;
+
+        setContact({
+          heading: res.data.heading || "",
+          description: res.data.description || "",
+          name: res.data.name || "",
+          subtitle: res.data.subtitle || "",
+          email: res.data.email || "",
+          image: res.data.image || null,
+          socials: {
+            instagram: res.data.socials?.instagram || "",
+            youtube: res.data.socials?.youtube || "",
+            linkedin: res.data.socials?.linkedin || "",
+          },
+        });
+      })
+      .catch(console.error);
   }, []);
 
-const saveContact = async () => {
-  try {
-    const formData = new FormData();
-    formData.append("heading", contact.heading);
-    formData.append("description", contact.description);
-    formData.append("name", contact.name);
-    formData.append("subtitle", contact.subtitle);
-    formData.append("email", contact.email);
-    formData.append("socials", JSON.stringify(contact.socials));
+  /* ---------------- SAVE ---------------- */
+  const saveContact = async () => {
+    try {
+      const formData = new FormData();
 
-    if (contact.image instanceof File) {
-      formData.append("image", contact.image);
+      formData.append("heading", contact.heading);
+      formData.append("description", contact.description);
+      formData.append("name", contact.name);
+      formData.append("subtitle", contact.subtitle);
+      formData.append("email", contact.email);
+      formData.append("socials", JSON.stringify(contact.socials));
+
+      if (contact.image instanceof File) {
+        formData.append("image", contact.image);
+      }
+
+      await axios.post(API, formData, {
+        withCredentials: true, // ✅ COOKIE AUTH
+      });
+
+      alert("Contact section updated ✅");
+    } catch (err) {
+      console.error(err);
+      alert(err.response?.data?.error || "Failed to save contact ❌");
     }
+  };
 
-    const token = localStorage.getItem("token");
-
-    await axios.post("http://localhost:5000/api/contact", formData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "multipart/form-data",
-      },
-      withCredentials: true,
-    });
-
-    alert("Contact section updated ✅");
-  } catch (err) {
-    console.error(err);
-    alert(err.response?.data?.error || "Failed to save contact ❌");
-  }
-};
-    return (
+  /* ---------------- UI ---------------- */
+  return (
     <div className="admin-contact">
       <h1>Edit Contact Section</h1>
 
       <div className="section-card">
         <label>Heading</label>
         <input
-          type="text"
           value={contact.heading}
           onChange={(e) =>
             setContact({ ...contact, heading: e.target.value })
@@ -80,7 +95,6 @@ const saveContact = async () => {
 
         <label>Name</label>
         <input
-          type="text"
           value={contact.name}
           onChange={(e) =>
             setContact({ ...contact, name: e.target.value })
@@ -89,7 +103,6 @@ const saveContact = async () => {
 
         <label>Subtitle</label>
         <input
-          type="text"
           value={contact.subtitle}
           onChange={(e) =>
             setContact({ ...contact, subtitle: e.target.value })
@@ -107,7 +120,6 @@ const saveContact = async () => {
 
         <label>Instagram URL</label>
         <input
-          type="text"
           value={contact.socials.instagram}
           onChange={(e) =>
             setContact({
@@ -122,7 +134,6 @@ const saveContact = async () => {
 
         <label>YouTube URL</label>
         <input
-          type="text"
           value={contact.socials.youtube}
           onChange={(e) =>
             setContact({
@@ -137,7 +148,6 @@ const saveContact = async () => {
 
         <label>LinkedIn URL</label>
         <input
-          type="text"
           value={contact.socials.linkedin}
           onChange={(e) =>
             setContact({

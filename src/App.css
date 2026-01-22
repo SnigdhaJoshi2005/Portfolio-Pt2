@@ -73,12 +73,6 @@ body {
   overflow: hidden;
 }
 
-.hero-images img {
-  width: 100%;
-  height: 550px;
-  object-fit: cover;
-}
-
 .hero-text {
   display: flex;
   justify-content: space-between;
@@ -361,6 +355,22 @@ body {
   color: var(--text-muted);
 }
 
+.back-to-add-btn {
+  background: transparent;
+  display: flex;
+  justify-content: start;
+  border: none;
+  color: #555;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.back-to-add-btn:hover {
+  text-decoration: underline;
+  color: #000;
+}
+
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .practice-grid {
@@ -381,7 +391,12 @@ body {
 /* LEFT: PHONES */
 .social-left {
   display: flex;
+  align-items: center;
   gap: 40px;
+}
+
+.social-left img{
+  width: 300px;
 }
 
 .social-phone {
@@ -409,10 +424,15 @@ body {
 }
 
 /* RIGHT: YOUTUBE */
+.social-right {
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+}
+
 .social-right h2 {
   font-family: "Playfair Display", serif;
   font-size: 48px;
-  margin-bottom: 30px;
 }
 
 .youtube-frame {
@@ -582,6 +602,28 @@ body {
   width: 100%;
   color: var(--text-muted);
   line-height: 1.8;
+}
+
+.contact a{
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: var(--bg-soft);
+  color: var(--secondary);
+
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.contact-socials{
+  display: flex;
+  gap: 16px;
+  margin: 20px 0;
 }
 
 /* ================= CONTACT TEXT ENHANCEMENTS ================= */
@@ -925,6 +967,8 @@ body {
 
 .hero-images img {
   object-fit: cover;
+  width: 100%;
+  height: 550px;
   animation: imageReveal 0.6s ease forwards;
 }
 

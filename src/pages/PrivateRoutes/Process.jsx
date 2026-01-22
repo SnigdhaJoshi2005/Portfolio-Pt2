@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../../App.css";
 
+const API = "http://localhost:5000/api/process";
+
 export default function Process() {
   const [process, setProcess] = useState({
     heading: "",
@@ -9,11 +11,12 @@ export default function Process() {
     description: "",
   });
 
-  const token = localStorage.getItem("token");
-
-  // GET existing process data
+  /* ---------------- GET ---------------- */
   useEffect(() => {
-    axios.get("http://localhost:5000/api/process")
+    axios
+      .get(API, {
+        withCredentials: true, // ✅ SEND COOKIE
+      })
       .then((res) => {
         if (res.data) {
           setProcess({
@@ -26,7 +29,7 @@ export default function Process() {
       .catch(console.error);
   }, []);
 
-  // Handle input change
+  /* ---------------- INPUT ---------------- */
   const handleChange = (e) => {
     setProcess({
       ...process,
@@ -34,24 +37,19 @@ export default function Process() {
     });
   };
 
-  // SAVE / UPDATE
+  /* ---------------- SAVE ---------------- */
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await axios.post(
-        "http://localhost:5000/api/process",
-        process,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      alert("Process section updated successfully!");
+      await axios.post(API, process, {
+        withCredentials: true, // ✅ COOKIE AUTH
+      });
+
+      alert("Process section updated successfully ✅");
     } catch (err) {
       console.error(err);
-      alert("Failed to update process section");
+      alert("Failed to update process section ❌");
     }
   };
 
@@ -87,7 +85,9 @@ export default function Process() {
           required
         />
 
-        <button type="submit">Save Changes</button>
+        <button type="submit" className="save-btn">
+          Save Changes
+        </button>
       </form>
     </div>
   );

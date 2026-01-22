@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import "../../App.css"; // reuse your global CSS
+import "../../App.css";
 
 const API = "http://localhost:5000/api/practices";
 
@@ -8,8 +8,12 @@ const Practice = () => {
   const [practices, setPractices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const formRef = useRef(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingId, setEditingId] = useState(null);
 
   const [form, setForm] = useState({
+    _id: null,
     title: "",
     description: "",
     image: null,
@@ -17,11 +21,13 @@ const Practice = () => {
 
   const [imagePreview, setImagePreview] = useState("");
 
-  // Fetch all practices
+  /* ---------------- FETCH ---------------- */
   useEffect(() => {
     const fetchPractices = async () => {
       try {
-        const res = await axios.get(API, { withCredentials: true });
+        const res = await axios.get(API, {
+          withCredentials: true,
+        });
         setPractices(res.data);
       } catch (err) {
         console.error("Failed to fetch practices", err);
@@ -32,42 +38,45 @@ const Practice = () => {
     fetchPractices();
   }, []);
 
-  // Handle image selection
+  /* ---------------- IMAGE SELECT ---------------- */
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    setForm({ ...form, image: file });
 
-    const reader = new FileReader();
-    reader.onloadend = () => setImagePreview(reader.result);
-    reader.readAsDataURL(file);
+    setForm({ ...form, image: file });
+    setImagePreview(URL.createObjectURL(file));
   };
 
-  // Save (add or update) practice
-  const savePractice = async (id = null) => {
+  /* ---------------- SAVE ---------------- */
+  const savePractice = async () => {
     try {
       setSaving(true);
+
       const formData = new FormData();
       formData.append("title", form.title);
       formData.append("description", form.description);
-      if (form.image instanceof File) formData.append("image", form.image);
+      if (form.image instanceof File) {
+        formData.append("image", form.image);
+      }
 
-      if (id) {
-        await axios.put(`${API}/${id}`, formData, {
-          withCredentials: true, // ✅ COOKIE AUTH
+      if (form._id) {
+        await axios.put(`${API}/${form._id}`, formData, {
+          withCredentials: true,
         });
         alert("Practice updated ✅");
       } else {
         await axios.post(API, formData, {
-          withCredentials: true, // ✅ COOKIE AUTH
+          withCredentials: true,
         });
         alert("Practice added ✅");
       }
 
-      const res = await axios.get(API);
+      const res = await axios.get(API, {
+        withCredentials: true,
+      });
       setPractices(res.data);
 
-      setForm({ title: "", description: "", image: null });
+      setForm({ _id: null, title: "", description: "", image: null });
       setImagePreview("");
     } catch (err) {
       console.error(err);
@@ -77,13 +86,13 @@ const Practice = () => {
     }
   };
 
-  // Delete practice
+  /* ---------------- DELETE ---------------- */
   const deletePractice = async (id) => {
     if (!window.confirm("Delete this practice?")) return;
 
     try {
       await axios.delete(`${API}/${id}`, {
-        withCredentials: true, // ✅ COOKIE
+        withCredentials: true,
       });
 
       setPractices(practices.filter((p) => p._id !== id));
@@ -93,16 +102,87 @@ const Practice = () => {
     }
   };
 
+  const handleEdit = (p) => {
+
+    setIsEditing(true);
+
+    setForm({
+      _id: p._id,
+      title: p.title,
+      description: p.description,
+      image: null,
+    });
+
+    setImagePreview(
+      p.image
+        ? p.image.startsWith("http")
+          ? p.image
+          : `http://localhost:5000/${p.image}`
+        : "",
+    );
+
+    // ✅ scroll to form
+    setTimeout(() => {
+      if (!formRef.current) return;
+
+      const y =
+        formRef.current.getBoundingClientRect().top + window.pageYOffset - 140;
+
+      window.scrollTo({
+        top: y,
+        behavior: "smooth",
+      });
+    }, 100);
+  };
+
+  const resetToAddMode = () => {
+    setIsEditing(false);
+
+    setForm({
+      _id: null,
+      title: "",
+      description: "",
+      image: null,
+    });
+
+    setImagePreview("");
+
+    // optional scroll
+    setTimeout(() => {
+      if (!formRef.current) return;
+
+      const y =
+        formRef.current.getBoundingClientRect().top + window.pageYOffset - 120;
+
+      window.scrollTo({
+        top: y,
+        behavior: "smooth",
+      });
+    }, 100);
+  };
+
   if (loading) return <p>Loading Practices...</p>;
 
   return (
     <div className="admin-practice">
       <h1>Practice Admin Panel</h1>
 
-      {/* ADD/EDIT PRACTICE FORM */}
-      <h2 className="admin-section-title">Add / Edit Practice</h2>
+      {/* FORM */}
+      <h2>{isEditing ? "Edit Practice" : "Add New Practice"}</h2>
 
-      <div className="section-card">
+      {isEditing && (
+        <button
+          type="button"
+          className="back-to-add-btn"
+          onClick={() => {
+            resetToAddMode();
+          }}
+        >
+          ← Back to Add Practice
+        </button>
+      )}
+
+      <div className="section-card" ref={formRef}>
         <label>Title</label>
         <input
           type="text"
@@ -120,34 +200,48 @@ const Practice = () => {
         <label>Upload Image</label>
         <input type="file" accept="image/*" onChange={handleImageChange} />
 
-        {imagePreview && <img src={imagePreview} alt="Preview" />}
+        {imagePreview && (
+          <img
+            src={imagePreview}
+            alt="Preview"
+            style={{ maxWidth: "300px", borderRadius: "10px" }}
+          />
+        )}
 
-        <button className="save-btn" onClick={() => savePractice()} disabled={saving}>
+        <button className="save-btn" onClick={savePractice} disabled={saving}>
           {saving ? "Saving..." : form._id ? "Update Practice" : "Add Practice"}
         </button>
       </div>
 
-      {/* LIST OF PRACTICES */}
+      {/* LIST */}
       <h2 className="admin-section-title">Existing Practices</h2>
 
       {practices.map((p) => (
         <div key={p._id} className="section-card">
           <h3>{p.title}</h3>
           <p>{p.description}</p>
+
           {p.image && (
             <img
-              src={p.image.startsWith("http") ? p.image : `http://localhost:5000/${p.image}`}
+              src={
+                p.image.startsWith("http")
+                  ? p.image
+                  : `http://localhost:5000/${p.image}`
+              }
               alt={p.title}
+              style={{ maxWidth: "300px", borderRadius: "10px" }}
             />
           )}
-          <div style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
+
+          <div style={{ marginTop: 10, display: "flex", gap: 10 }}>
             <button
-              onClick={() =>
-                setForm({ _id: p._id, title: p.title, description: p.description, image: p.image })
-              }
+              onClick={() => {
+                handleEdit(p);
+              }}
             >
               Edit
             </button>
+
             <button
               onClick={() => deletePractice(p._id)}
               style={{ background: "#ff4d4d", color: "#fff" }}
@@ -158,7 +252,6 @@ const Practice = () => {
         </div>
       ))}
     </div>
-
   );
 };
 

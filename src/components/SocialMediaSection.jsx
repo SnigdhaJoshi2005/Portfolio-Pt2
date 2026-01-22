@@ -21,19 +21,27 @@ const SocialMediaSection = () => {
   return (
     <section className="social-media" id="socials">
       <div className="social-left">
-        <a href={social.instagramUrl} target="_blank" rel="noreferrer">
-          <img
-            src={resolveImage(social.instagramImg)}
-            alt="Instagram"
-          />
-        </a>
+        <div>
+          <a href={social.instagramUrl} target="_blank" rel="noreferrer">
+            <img
+              src={resolveImage(social.instagramImg)}
+              alt="Instagram"
+            />
+          </a>
+          <br />
+          <a href={social.instagramUrl} target="_blank" rel="noreferrer" style={{textDecoration:"none"}}>instagram</a>
+        </div>
 
-        <a href={social.facebookUrl} target="_blank" rel="noreferrer">
-          <img
-            src={resolveImage(social.facebookImg)}
-            alt="Facebook"
-          />
-        </a>
+        <div>
+          <a href={social.facebookUrl} target="_blank" rel="noreferrer">
+            <img
+              src={resolveImage(social.facebookImg)}
+              alt="Facebook"
+            />
+          </a>
+          <br />
+          <a href={social.facebookUrl} target="_blank" rel="noreferrer" style={{textDecoration:"none"}}>facebook</a>
+        </div>
       </div>
 
       <div className="social-right">

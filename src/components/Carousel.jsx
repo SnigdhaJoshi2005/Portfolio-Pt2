@@ -25,6 +25,7 @@ const Carousel = ({ images }) => {
     <div className="hero-images">
       <AnimatePresence mode="wait">
         <motion.img
+        className="hero-img"
           key={index}
           src={
             displayImages[index].startsWith("http") || displayImages[index].startsWith("src")
@@ -32,26 +33,26 @@ const Carousel = ({ images }) => {
               : `http://localhost:5000/${displayImages[index]}`
           }
           alt="Hero"
-                    initial={{
-                        opacity: 0.8,
-                        scale: 1.05,
-                    }}
-                    animate={{
-                        opacity: 1,
-                        // scale: 1,
-                    }}
-                    exit={{
-                        opacity: 0.8,
-                        scale: 1.05,
-                    }}
-                    transition={{
-                        duration: 1.2,
-                        ease: [0.4, 0, 0.2, 1], // smooth material-like easing
-                    }}
-                />
-            </AnimatePresence>
-        </div>
-    );
+          initial={{
+            opacity: 0.8,
+            scale: 1.05,
+          }}
+          animate={{
+            opacity: 1,
+            // scale: 1,
+          }}
+          exit={{
+            opacity: 0.8,
+            scale: 1.05,
+          }}
+          transition={{
+            duration: 1.2,
+            ease: [0.4, 0, 0.2, 1], // smooth material-like easing
+          }}
+        />
+      </AnimatePresence>
+    </div>
+  );
 }
 
 export default Carousel;

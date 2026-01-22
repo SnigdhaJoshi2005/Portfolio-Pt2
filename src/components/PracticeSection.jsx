@@ -21,6 +21,7 @@ const PracticeSection = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-120px" }}
+      id="practices"
     >
       <motion.h2 variants={fadeUp}>
         Creator of Transformational Practices

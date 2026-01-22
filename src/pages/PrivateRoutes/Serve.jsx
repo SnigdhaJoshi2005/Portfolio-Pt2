@@ -19,38 +19,65 @@ const Serve = () => {
   const [preview1, setPreview1] = useState("");
   const [preview2, setPreview2] = useState("");
 
+  /* ---------------- FETCH ---------------- */
   useEffect(() => {
-    axios.get(API).then((res) => {
-      if (res.data) {
-        setServe(res.data);
-        if (res.data.image1) setPreview1(`http://localhost:5000/${res.data.image1}`);
-        if (res.data.image2) setPreview2(`http://localhost:5000/${res.data.image2}`);
+    const fetchServe = async () => {
+      try {
+        const res = await axios.get(API, {
+          withCredentials: true, // ✅ send cookie
+        });
+
+        if (res.data) {
+          setServe(res.data);
+
+          if (res.data.image1) {
+            setPreview1(
+              res.data.image1.startsWith("http")
+                ? res.data.image1
+                : `http://localhost:5000/${res.data.image1}`
+            );
+          }
+
+          if (res.data.image2) {
+            setPreview2(
+              res.data.image2.startsWith("http")
+                ? res.data.image2
+                : `http://localhost:5000/${res.data.image2}`
+            );
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch serve section", err);
       }
-    });
+    };
+
+    fetchServe();
   }, []);
 
+  /* ---------------- SAVE ---------------- */
   const saveServe = async () => {
-    const token = localStorage.getItem("token");
+    try {
+      const formData = new FormData();
 
-    const formData = new FormData();
-    Object.keys(serve).forEach((key) => {
-      if (key === "list") {
-        formData.append("list", JSON.stringify(serve.list));
-      } else if (serve[key] instanceof File) {
-        formData.append(key, serve[key]);
-      } else {
-        formData.append(key, serve[key]);
-      }
-    });
+      Object.keys(serve).forEach((key) => {
+        if (key === "list") {
+          formData.append("list", JSON.stringify(serve.list));
+        } else if (serve[key] instanceof File) {
+          formData.append(key, serve[key]);
+        } else {
+          formData.append(key, serve[key] || "");
+        }
+      });
 
-    await axios.put(API, formData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "multipart/form-data",
-      },
-    });
+      await axios.put(API, formData, {
+        withCredentials: true, // ✅ cookie auth
+      });
 
-    alert("Serve section updated ✅");
+      alert("Serve section updated ✅");
+    } catch (err) {
+      console.error(err);
+      alert(err.response?.data?.error || "Failed to update Serve section ❌");
+    }
   };
 
   /* ---------------- UI ---------------- */
@@ -65,33 +92,50 @@ const Serve = () => {
         <label>Title</label>
         <input
           value={serve.title1}
-          onChange={(e) => setServe({ ...serve, title1: e.target.value })}
+          onChange={(e) =>
+            setServe({ ...serve, title1: e.target.value })
+          }
         />
 
         <label>Description</label>
         <textarea
           value={serve.description1}
-          onChange={(e) => setServe({ ...serve, description1: e.target.value })}
+          onChange={(e) =>
+            setServe({ ...serve, description1: e.target.value })
+          }
         />
 
         <label>List Items (one per line)</label>
         <textarea
           value={serve.list.join("\n")}
           onChange={(e) =>
-            setServe({ ...serve, list: e.target.value.split("\n") })
+            setServe({
+              ...serve,
+              list: e.target.value.split("\n"),
+            })
           }
         />
 
         <label>Image</label>
         <input
           type="file"
+          accept="image/*"
           onChange={(e) => {
-            setServe({ ...serve, image1: e.target.files[0] });
-            setPreview1(URL.createObjectURL(e.target.files[0]));
+            const file = e.target.files[0];
+            if (!file) return;
+
+            setServe({ ...serve, image1: file });
+            setPreview1(URL.createObjectURL(file));
           }}
         />
 
-        {preview1 && <img src={preview1} style={{ maxWidth: "300px" }} />}
+        {preview1 && (
+          <img
+            src={preview1}
+            alt="Preview"
+            style={{ maxWidth: "300px", borderRadius: "10px" }}
+          />
+        )}
       </div>
 
       {/* GLOBAL VISION */}
@@ -101,31 +145,47 @@ const Serve = () => {
         <label>Title</label>
         <input
           value={serve.title2}
-          onChange={(e) => setServe({ ...serve, title2: e.target.value })}
+          onChange={(e) =>
+            setServe({ ...serve, title2: e.target.value })
+          }
         />
 
         <label>Description</label>
         <textarea
           value={serve.description2}
-          onChange={(e) => setServe({ ...serve, description2: e.target.value })}
+          onChange={(e) =>
+            setServe({ ...serve, description2: e.target.value })
+          }
         />
 
         <label>Quote</label>
         <input
           value={serve.quote}
-          onChange={(e) => setServe({ ...serve, quote: e.target.value })}
+          onChange={(e) =>
+            setServe({ ...serve, quote: e.target.value })
+          }
         />
 
         <label>Image</label>
         <input
           type="file"
+          accept="image/*"
           onChange={(e) => {
-            setServe({ ...serve, image2: e.target.files[0] });
-            setPreview2(URL.createObjectURL(e.target.files[0]));
+            const file = e.target.files[0];
+            if (!file) return;
+
+            setServe({ ...serve, image2: file });
+            setPreview2(URL.createObjectURL(file));
           }}
         />
 
-        {preview2 && <img src={preview2} style={{ maxWidth: "300px" }} />}
+        {preview2 && (
+          <img
+            src={preview2}
+            alt="Preview"
+            style={{ maxWidth: "300px", borderRadius: "10px" }}
+          />
+        )}
 
         <button onClick={saveServe} className="save-btn">
           Save Serve Section

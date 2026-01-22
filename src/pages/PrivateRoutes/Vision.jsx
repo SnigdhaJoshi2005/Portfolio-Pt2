@@ -13,53 +13,68 @@ const Vision = () => {
   const [preview, setPreview] = useState("");
   const [loading, setLoading] = useState(true);
 
+  // ✅ Fetch vision (cookie-based auth)
   useEffect(() => {
-    axios.get(API).then((res) => {
-      if (res.data) {
-        setVision(res.data);
-        if (res.data.image) {
-          setPreview(`http://localhost:5000/${res.data.image}`);
+    const fetchVision = async () => {
+      try {
+        const res = await axios.get(API, {
+          withCredentials: true, // ✅ send cookie
+        });
+
+        if (res.data) {
+          setVision(res.data);
+
+          if (res.data.image) {
+            setPreview(
+              res.data.image.startsWith("http")
+                ? res.data.image
+                : `http://localhost:5000/${res.data.image}`
+            );
+          }
         }
+      } catch (err) {
+        console.error("Failed to fetch vision", err);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
-    });
+    };
+
+    fetchVision();
   }, []);
 
+  // ✅ Image preview
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
     setVision({ ...vision, image: file });
-
-    const reader = new FileReader();
-    reader.onloadend = () => setPreview(reader.result);
-    reader.readAsDataURL(file);
+    setPreview(URL.createObjectURL(file));
   };
 
+  // ✅ Save vision (cookie-based auth)
   const saveVision = async () => {
-    const token = localStorage.getItem("token");
+    try {
+      const formData = new FormData();
+      formData.append("title", vision.title);
+      formData.append("description", vision.description);
 
-    const formData = new FormData();
-    formData.append("title", vision.title);
-    formData.append("description", vision.description);
+      if (vision.image instanceof File) {
+        formData.append("image", vision.image);
+      }
 
-    if (vision.image instanceof File) {
-      formData.append("image", vision.image);
+      await axios.put(API, formData, {
+        withCredentials: true, // ✅ cookie sent automatically
+      });
+
+      alert("Vision updated ✅");
+    } catch (err) {
+      console.error(err);
+      alert(err.response?.data?.error || "Failed to update vision ❌");
     }
-
-    await axios.put(API, formData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "multipart/form-data",
-      },
-    });
-
-    alert("Vision updated ✅");
   };
 
   if (loading) return <p>Loading...</p>;
 
-  /* ---------------- UI ---------------- */
   return (
     <div className="admin-vision">
       <h1>Edit Vision</h1>
@@ -71,14 +86,18 @@ const Vision = () => {
         <input
           type="text"
           value={vision.title}
-          onChange={(e) => setVision({ ...vision, title: e.target.value })}
+          onChange={(e) =>
+            setVision({ ...vision, title: e.target.value })
+          }
         />
 
         <label>Description</label>
         <textarea
           rows="6"
           value={vision.description}
-          onChange={(e) => setVision({ ...vision, description: e.target.value })}
+          onChange={(e) =>
+            setVision({ ...vision, description: e.target.value })
+          }
         />
 
         <label>Upload Image</label>
@@ -88,7 +107,11 @@ const Vision = () => {
           <img
             src={preview}
             alt="Preview"
-            style={{ maxWidth: "400px", marginTop: "10px", borderRadius: "10px" }}
+            style={{
+              maxWidth: "400px",
+              marginTop: "10px",
+              borderRadius: "10px",
+            }}
           />
         )}
 
