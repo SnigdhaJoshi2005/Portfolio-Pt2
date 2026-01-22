@@ -9,6 +9,7 @@ const PracticeSection = () => {
 
   useEffect(() => {
     axios.get("http://localhost:5000/api/practices").then((res) => {
+      console.log(res.data);
       setPractices(res.data);
     });
   }, []);
@@ -16,13 +17,14 @@ const PracticeSection = () => {
   return (
     <motion.section
       className="practices"
-      id="practices"
+      variants={stagger}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
-      variants={stagger}
+      viewport={{ once: true, margin: "-120px" }}
     >
-      <motion.h2 variants={fadeUp}>Creator of Transformational Practices</motion.h2>
+      <motion.h2 variants={fadeUp}>
+        Creator of Transformational Practices
+      </motion.h2>
 
       <div className="practice-grid">
         {practices.map((practice) => (
@@ -30,7 +32,7 @@ const PracticeSection = () => {
             <motion.div
               className="practice-card"
               variants={fadeUp}
-              whileHover={{ scale: 1.03 }}
+              whileHover={{ y: -6 }}
               transition={{ type: "spring", stiffness: 120 }}
             >
               <img
@@ -41,7 +43,6 @@ const PracticeSection = () => {
                 className="practice-image"
               />
               <h3>{practice.title}</h3>
-              <p>{practice.description}</p>
             </motion.div>
           </Link>
         ))}

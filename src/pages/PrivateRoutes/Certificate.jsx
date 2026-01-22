@@ -9,11 +9,12 @@ const Certificate = () => {
     image: "",
   });
   const [editingId, setEditingId] = useState(null);
+  const [imagePreview, setImagePreview] = useState("");
 
   // FETCH CERTIFICATES
   const fetchCertificates = async () => {
     try {
-      const res = await fetch("/api/certificates", {
+      const res = await fetch("http://localhost:5000/api/certificates", {
         credentials: "include",
       });
       console.log(res);
@@ -28,14 +29,25 @@ const Certificate = () => {
     fetchCertificates();
   }, []);
 
+  // Handle image selection
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setForm({ ...form, image: file });
+
+    const reader = new FileReader();
+    reader.onloadend = () => setImagePreview(reader.result);
+    reader.readAsDataURL(file);
+  };
+
   // ADD / UPDATE CERTIFICATE
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const method = editingId ? "PUT" : "POST";
     const url = editingId
-      ? `/api/certificates/${editingId}`
-      : "/api/certificates";
+      ? `http://localhost:5000/api/certificates/${editingId}`
+      : "http://localhost:5000/api/certificates";
 
     await fetch(url, {
       method,
@@ -84,38 +96,37 @@ const Certificate = () => {
           <form className="certificate-form" onSubmit={handleSubmit}>
             <h3>{editingId ? "Edit Certificate" : "Add New Certificate"}</h3>
 
-            <input
-              type="text"
-              placeholder="Certificate Title"
-              value={form.title}
-              onChange={(e) =>
-                setForm({ ...form, title: e.target.value })
-              }
-              required
-            />
+            <div className="section-card">
+              <label>Title</label>
+              <input
+                type="text"
+                placeholder="Certificate Title"
+                value={form.title}
+                onChange={(e) =>
+                  setForm({ ...form, title: e.target.value })
+                }
+                required
+              />
 
-            <textarea
-              placeholder="Certificate Description"
-              value={form.description}
-              onChange={(e) =>
-                setForm({ ...form, description: e.target.value })
-              }
-              required
-            />
+              <label>Description</label>
+              <textarea
+                placeholder="Certificate Description"
+                value={form.description}
+                onChange={(e) =>
+                  setForm({ ...form, description: e.target.value })
+                }
+                required
+              />
 
-            <input
-              type="text"
-              placeholder="Image URL"
-              value={form.image}
-              onChange={(e) =>
-                setForm({ ...form, image: e.target.value })
-              }
-              required
-            />
+              <label>Upload Image</label>
+              <input type="file" accept="image/*" onChange={handleImageChange} />
 
-            <button type="submit">
-              {editingId ? "Update Certificate" : "Add Certificate"}
-            </button>
+              {imagePreview && <img src={imagePreview} alt="Preview" />}
+
+              <button type="submit">
+                {editingId ? "Update Certificate" : "Add Certificate"}
+              </button>
+            </div>
           </form>
 
           {/* ================= LIST ================= */}

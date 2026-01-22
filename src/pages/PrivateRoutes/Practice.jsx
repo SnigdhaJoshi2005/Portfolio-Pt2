@@ -47,41 +47,31 @@ const Practice = () => {
   const savePractice = async (id = null) => {
     try {
       setSaving(true);
-      const token = localStorage.getItem("token");
-      if (!token) {
-        alert("Session expired. Please login again.");
-        return;
-      }
-
       const formData = new FormData();
       formData.append("title", form.title);
       formData.append("description", form.description);
       if (form.image instanceof File) formData.append("image", form.image);
 
       if (id) {
-        // update
         await axios.put(`${API}/${id}`, formData, {
-          headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true, // ✅ COOKIE AUTH
         });
         alert("Practice updated ✅");
       } else {
-        // create
         await axios.post(API, formData, {
-          headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true, // ✅ COOKIE AUTH
         });
         alert("Practice added ✅");
       }
 
-      // Refresh practices
-      const res = await axios.get(API, { withCredentials: true });
+      const res = await axios.get(API);
       setPractices(res.data);
 
-      // Reset form
       setForm({ title: "", description: "", image: null });
       setImagePreview("");
     } catch (err) {
       console.error(err);
-      alert(err.response?.data?.error || "Failed to save ❌");
+      alert("Failed to save ❌");
     } finally {
       setSaving(false);
     }
@@ -89,12 +79,13 @@ const Practice = () => {
 
   // Delete practice
   const deletePractice = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this practice?")) return;
+    if (!window.confirm("Delete this practice?")) return;
+
     try {
-      const token = localStorage.getItem("token");
       await axios.delete(`${API}/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true, // ✅ COOKIE
       });
+
       setPractices(practices.filter((p) => p._id !== id));
     } catch (err) {
       console.error(err);
@@ -105,7 +96,7 @@ const Practice = () => {
   if (loading) return <p>Loading Practices...</p>;
 
   return (
-    <div className="about-admin">
+    <div className="admin-practice">
       <h1>Practice Admin Panel</h1>
 
       {/* ADD/EDIT PRACTICE FORM */}

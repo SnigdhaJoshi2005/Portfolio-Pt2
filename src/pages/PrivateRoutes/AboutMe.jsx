@@ -11,8 +11,7 @@ const AboutMe = () => {
   const [about, setAbout] = useState({
     title: "",
     image: "",
-    heading: "",
-    description: "",
+    sections: [{ heading: "", text: "" }],
     socials: {
       linkedin: "",
       instagram: "",
@@ -27,25 +26,29 @@ const AboutMe = () => {
     const fetchAbout = async () => {
       try {
         const res = await axios.get(API, { withCredentials: true });
-        console.log(res.data.sections);
+        console.log(res.data);
+
         if (res.data) {
           setAbout({
             title: res.data.title || "",
             image: res.data.image || "",
-            heading: res.data.sections[0]?.heading || "",
-            description: res.data.sections[0]?.text || "",
+            sections:
+              res.data.sections && res.data.sections.length > 0
+                ? res.data.sections
+                : [{ heading: "", text: "" }],
             socials: {
               linkedin: res.data.socials?.linkedin || "",
               instagram: res.data.socials?.instagram || "",
               facebook: res.data.socials?.facebook || "",
             },
           });
+
           setImagePreview(
             res.data.image
               ? res.data.image.startsWith("http")
                 ? res.data.image
                 : `http://localhost:5000/${res.data.image}`
-              : ""
+              : "",
           );
         }
       } catch (err) {
@@ -79,8 +82,7 @@ const AboutMe = () => {
 
       const formData = new FormData();
       formData.append("title", about.title);
-      formData.append("heading", about.heading);
-      formData.append("description", about.description);
+      formData.append("sections", JSON.stringify(about.sections));
       formData.append("linkedin", about.socials.linkedin);
       formData.append("instagram", about.socials.instagram);
       formData.append("facebook", about.socials.facebook);
@@ -101,7 +103,6 @@ const AboutMe = () => {
       setSaving(false);
     }
   };
-
 
   if (loading) return <p>Loading About Me...</p>;
 
@@ -125,12 +126,7 @@ const AboutMe = () => {
         <label>Upload Image</label>
         <input type="file" accept="image/*" onChange={handleImageChange} />
 
-        {imagePreview && (
-          <img
-            src={imagePreview}
-            alt="Preview"
-          />
-        )}
+        {imagePreview && <img src={imagePreview} alt="Preview" />}
       </div>
 
       {/* CONTENT */}
@@ -140,17 +136,29 @@ const AboutMe = () => {
         <label>Heading</label>
         <input
           type="text"
-          value={about.heading}
-          onChange={(e) => setAbout({ ...about, heading: e.target.value })}
+          value={about.sections[0]?.heading || ""}
+          onChange={(e) => {
+            const updatedSections = [...about.sections];
+            updatedSections[0] = {
+              ...updatedSections[0],
+              heading: e.target.value,
+            };
+            setAbout({ ...about, sections: updatedSections });
+          }}
         />
 
         <label>Description</label>
         <textarea
           rows="6"
-          value={about.description}
-          onChange={(e) =>
-            setAbout({ ...about, description: e.target.value })
-          }
+          value={about.sections[0]?.text || ""}
+          onChange={(e) => {
+            const updatedSections = [...about.sections];
+            updatedSections[0] = {
+              ...updatedSections[0],
+              text: e.target.value,
+            };
+            setAbout({ ...about, sections: updatedSections });
+          }}
         />
       </div>
 
@@ -201,7 +209,6 @@ const AboutMe = () => {
       </button>
     </div>
   );
-
 };
 
 export default AboutMe;

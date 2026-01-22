@@ -338,11 +338,6 @@ body {
   box-shadow: 0 10px 30px rgba(35, 82, 86, 0.3);
   padding: 50px;
   border-radius: 24px;
-  transition: transform 0.4s ease;
-}
-
-.practice-card:hover {
-  transform: translateY(-6px);
 }
 
 .practice-card h3 {
@@ -802,7 +797,7 @@ body {
 
 .admin-main {
   padding: 40px;
-  width : 100%;
+  width: 100%;
 }
 
 .admin-main h1 {
@@ -816,7 +811,7 @@ body {
   margin-bottom: 40px;
   text-align: center;
   margin-top: 25px;
-  width : 100%;
+  width: 100%;
 }
 
 /* CARDS */
@@ -929,11 +924,7 @@ body {
 }
 
 .hero-images img {
-  width: 240px;
-  height: 160px;
   object-fit: cover;
-  border-radius: 28px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
   animation: imageReveal 0.6s ease forwards;
 }
 
@@ -1126,6 +1117,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1137,6 +1129,7 @@ body {
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -1253,7 +1246,7 @@ body {
 
 .section-card img {
   width: 25%;
-  object-fit: fill; 
+  object-fit: fill;
   border-radius: 20px;
   margin: 0 auto;
   display: block;
@@ -1386,13 +1379,13 @@ body {
 .admin-social-media {
   max-width: 900px;
   margin: 0 auto;
-  padding: 100px 40px;      
+  padding: 100px 40px;
   background: var(--bg-main);
   display: flex;
   flex-direction: column;
   gap: 40px;
   animation: fadeUp 0.8s ease forwards;
-} 
+}
 
 /* Page title */
 .admin-about h1 {
@@ -1401,9 +1394,9 @@ body {
   text-align: center;
   margin-bottom: 10px;
   color: var(--text-dark);
-} 
+}
 
-/* ================= SECTION CARD ================= */  
+/* ================= SECTION CARD ================= */
 .section-card {
   background: #ffffff;
   padding: 36px;
@@ -1432,7 +1425,7 @@ body {
 .section-card label {
   font-size: 14px;
   font-weight: 600;
-  color: var(--text-muted);   
+  color: var(--text-muted);
 }
 
 /* Inputs */
@@ -1444,7 +1437,7 @@ body {
   font-size: 15px;
   outline: none;
   transition: border 0.25s ease, box-shadow 0.25s ease;
-} 
+}
 
 .section-card input:focus,
 .section-card textarea:focus {
@@ -1485,6 +1478,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1502,11 +1496,11 @@ body {
 /* ===================== ADMIN PROCESS ===================== */
 .admin-process {
   max-width: 900px;
-  margin: 0 auto;       
+  margin: 0 auto;
   padding: 100px 40px;
   background: var(--bg-main);
   display: flex;
-  flex-direction: column;   
+  flex-direction: column;
   gap: 40px;
   animation: fadeUp 0.8s ease forwards;
 }
@@ -1593,6 +1587,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1788,6 +1783,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1880,6 +1876,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

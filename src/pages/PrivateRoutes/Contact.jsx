@@ -36,7 +36,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="admin-form">
+    <div className="admin-contact">
       <h1>Edit Contact Section</h1>
 
       <input
